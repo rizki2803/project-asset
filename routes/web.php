@@ -13,6 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('user.index');
-});
+
+Route::get('/dashboard', [App\Http\Controllers\MasterController::class, 'index'])->name('dashboard');
+Route::get('/', [App\Http\Controllers\PengajuanController::class, 'index'])->name('user');
