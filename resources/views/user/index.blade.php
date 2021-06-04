@@ -62,7 +62,7 @@
                             <div class="form-group">
                                 <input type="radio" name="pil_aktif" id="pil_aktif"  value="NO" checked class="with-gap">
                                 <label for="pil_aktif"><b>Pengajuan Barang</b> </label>
-                                <input type="radio" name="pil_aktif" id="pil_aktif1" value="OK">
+                                <input type="radio" name="pil_aktif" id="pil_aktif1" value="OK" checked class="with-gap">
                                 <label for="pil_aktif1"><b>Kerusakan Barang</b></label>
                             </div>
                             <div class="col-sm-6">

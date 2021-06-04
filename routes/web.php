@@ -15,4 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/dashboard', [App\Http\Controllers\MasterController::class, 'index'])->name('dashboard');
+Route::get('/mstr_bar', [App\Http\Controllers\MasterController::class, 'mstr_bar'])->name('mstr_bar');
+
 Route::get('/', [App\Http\Controllers\PengajuanController::class, 'index'])->name('user');
+Route::get('/store', [App\Http\Controllers\PengajuanController::class, 'store_p'])->name('store_p');

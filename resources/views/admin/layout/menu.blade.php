@@ -548,6 +548,16 @@
 
 <!-- Demo Js -->
 <script src="{{asset('assets')}}/js/demo.js"></script>
+
+
+
+<!-- Jquery DataTable Plugin Js -->
+<script src="{{asset('assets')}}/plugins/jquery-datatable/jquery.dataTables.js"></script>
+<script src="{{asset('assets')}}/plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js"></script>
+
+<!-- Custom Js -->
+<script src="{{asset('assets')}}/js/pages/tables/jquery-datatable.js"></script>
+
 </body>
 
 </html>
