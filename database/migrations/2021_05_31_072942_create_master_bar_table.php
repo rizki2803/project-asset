@@ -21,6 +21,10 @@ class CreateMasterBarTable extends Migration
             $table->uuid('kt_id')->nullable();
             $table->integer('mb_jml')->nullable();
             $table->integer('mb_minjml')->nullable();
+            $table->string('mb_cr_by')->nullable();
+            $table->datetime('mb_cr_at')->nullable();
+            $table->string('mb_up_by')->nullable();
+            $table->datetime('mb_up_at')->nullable();
             $table->timestamps();
         });
     }

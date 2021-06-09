@@ -11,6 +11,7 @@ class Master extends Model
 
     protected $table = "master_bar";
 
-    protected $fillable = ["mb_id", "mb_kode", "mb_nmbar", "sb_id", "kt_id", "mb_jml", "mb_minjml"];
+    protected $fillable = ["mb_id", "mb_kode", "mb_nmbar", "sb_id", "kt_id", "mb_jml",
+                            "mb_minjml", "mb_cr_by", "mb_cr_at", "mb_up_by", "mb_up_at"] ;
 
 }

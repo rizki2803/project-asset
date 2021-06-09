@@ -11,6 +11,6 @@ class SatuanBarang extends Model
 
     protected $table = "sat_bar";
 
-    protected $fillable = ["sb_id", "sb_nm"];
+    protected $fillable = ["sb_id", "sb_nm", "sb_cr_by", "sb_cr_at", "sb_up_by", "sb_up_at"];
 
 }

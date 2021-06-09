@@ -15,7 +15,7 @@ class CreateBarPTable extends Migration
     {
         Schema::create('bar_p', function (Blueprint $table) {
             $table->uuid('p_id')->primary();
-            $table->boolean('p_kat')->nullable();
+            $table->enum('p_kat', ['0','1'])->nullable();
             $table->string('p_reg')->nullable();
             $table->string('p_nmusr')->nullable();
             $table->string('p_dprt')->nullable();
@@ -29,6 +29,10 @@ class CreateBarPTable extends Migration
             $table->string('p_nik')->nullable();
             $table->string('p_act')->nullable();
             $table->uuid('mb_id')->nullable();
+            $table->string('p_cr_by')->nullable();
+            $table->datetime('p_cr_at')->nullable();
+            $table->string('p_up_by')->nullable();
+            $table->datetime('p_up_at')->nullable();
             $table->timestamps();
         });
     }

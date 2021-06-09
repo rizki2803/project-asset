@@ -16,6 +16,10 @@ class CreateSatBarTable extends Migration
         Schema::create('sat_bar', function (Blueprint $table) {
             $table->uuid('sb_id')->primary();
             $table->string('sb_nm')->nullable();
+            $table->string('sb_cr_by')->nullable();
+            $table->datetime('sb_cr_at')->nullable();
+            $table->string('sb_up_by')->nullable();
+            $table->datetime('sb_up_at')->nullable();
             $table->timestamps();
         });
     }

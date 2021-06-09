@@ -19,6 +19,11 @@ class CreateSrvcTable extends Migration
             $table->boolean('s_stat')->nullable();
             $table->enum('s_pick', ['0', '1', '2'])->nullable();
             $table->string('s_vndr')->nullable();
+            $table->datetime('s_estmd')->nullable();
+            $table->string('s_cr_by')->nullable();
+            $table->datetime('s_cr_at')->nullable();
+            $table->string('s_up_by')->nullable();
+            $table->datetime('s_up_at')->nullable();
             $table->timestamps();
         });
     }
