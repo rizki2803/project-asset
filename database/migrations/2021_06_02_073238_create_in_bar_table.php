@@ -21,6 +21,12 @@ class CreateInBarTable extends Migration
             $table->uuid('mb_id')->nullable();
             $table->string('in_pjwb')->nullable();
             $table->string('in_ket')->nullable();
+            $table->uuid('p_id')->nullable();
+            $table->uuid('s_id')->nullable();
+            $table->string('in_cr_by')->nullable();
+            $table->datetime('in_cr_at')->nullable();
+            $table->string('in_up_by')->nullable();
+            $table->datetime('in_up_at')->nullable();
             $table->timestamps();
         });
     }

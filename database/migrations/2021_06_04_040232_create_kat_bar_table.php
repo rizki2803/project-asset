@@ -17,6 +17,10 @@ class CreateKatBarTable extends Migration
             $table->uuid('kt_id')->primary();
             $table->string('kt_kode')->nullable();
             $table->string('kt_nm')->nullable();
+            $table->string('kt_cr_by')->nullable();
+            $table->datetime('kt_cr_at')->nullable();
+            $table->string('kt_up_by')->nullable();
+            $table->datetime('kt_up_at')->nullable();
             $table->timestamps();
         });
     }
