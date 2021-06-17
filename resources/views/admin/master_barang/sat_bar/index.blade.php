@@ -73,7 +73,7 @@
             </div>
             <!-- #END# Basic Examples -->
 
-            <!-- ADD MASTER BARANG -->
+            <!-- Modal SATUAN BARANG -->
             <div class="modal fade" id="ModalSatBar" tabindex="-1" role="dialog">
                 <div class="modal-dialog modal-sm" role="document">
                     <div class="modal-content">

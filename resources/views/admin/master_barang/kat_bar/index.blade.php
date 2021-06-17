@@ -78,7 +78,7 @@
             </div>
             <!-- #END# Basic Examples -->
 
-            <!-- ADD MASTER BARANG -->
+            <!-- MODAL KATEGORI BARANG -->
             <div class="modal fade" id="ModalKatBar" tabindex="-1" role="dialog">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
