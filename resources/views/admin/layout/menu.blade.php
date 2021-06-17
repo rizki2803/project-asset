@@ -19,6 +19,18 @@
                     </a>
                 </li>
                 <li>
+                    <a href="{{asset('assets')}}/pages/helper-classes.html">
+                        <i class="material-icons">assignment</i>
+                        <span>List Pengajuan<Keluar></Keluar></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{asset('assets')}}/pages/helper-classes.html">
+                        <i class="material-icons">build</i>
+                        <span>List Service</span>
+                    </a>
+                </li>
+                <li>
                     <a href="{{asset('assets')}}/pages/typography.html">
                         <i class="material-icons">widgets</i>
                         <span>Master Barang</span>
@@ -42,13 +54,6 @@
                         <span>Barang Keluar <Keluar></Keluar></span>
                     </a>
                 </li>
-                <li>
-                    <a href="{{asset('assets')}}/pages/helper-classes.html">
-                        <i class="material-icons">assignment</i>
-                        <span>Form Pengajuan<Keluar></Keluar></span>
-                    </a>
-                </li>
-
             </ul>
         </div>
         <!-- #Menu -->
