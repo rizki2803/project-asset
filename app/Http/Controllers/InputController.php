@@ -9,7 +9,7 @@ class InputController extends Controller
 
     public function index()
         {
-
+            return view('admin.input_barang.index');
         }
 
 }

@@ -25,19 +25,19 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{asset('assets')}}/pages/helper-classes.html">
+                    <a href="{{route('stk_bar')}}">
                         <i class="material-icons">layers</i>
                         <span>Stok Barang</span>
                     </a>
                 </li>
                 <li>
-                    <a href="{{asset('assets')}}/pages/helper-classes.html">
+                    <a href="{{route('in_bar')}}">
                         <i class="material-icons">compare_arrows</i>
                         <span>Barang Masuk</span>
                     </a>
                 </li>
                 <li>
-                    <a href="{{asset('assets')}}/pages/helper-classes.html">
+                    <a href="{{route('out_bar')}}">
                         <i class="material-icons">swap_horiz</i>
                         <span>Barang Keluar <Keluar></Keluar></span>
                     </a>

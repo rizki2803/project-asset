@@ -9,7 +9,7 @@ class OutputController extends Controller
 
     public function index()
         {
-
+            return view('admin.output_barang.index');
         }
 
 }
