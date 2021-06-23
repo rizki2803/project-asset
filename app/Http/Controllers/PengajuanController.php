@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Master;
 use Illuminate\Http\Request;
 use Ramsey\Uuid\Uuid;
 use App\Models\Pengajuan;
@@ -12,8 +13,15 @@ class PengajuanController extends Controller
 
     public function index()
         {
-            return view('user.index');
+            $data ['mb'] = Master::pluck('mb_nmbar', 'mb_nmbar');
+
+            return view('user.index', $data);
         }
+
+    public function list_p()
+    {
+        return view('admin.list_pengajuan.index');
+    }
 
     public function store_p(Request $request)
         {

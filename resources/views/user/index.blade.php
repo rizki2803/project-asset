@@ -97,11 +97,24 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-sm-12">
+                            <div class="col-sm-6">
                                 <div class="form-group">
                                     <div class="form-line">
                                         <label>Merk/Type</label>
                                         <input  id="p_merk" name="nama_aktif" type="text" class="form-control" placeholder="MERK/TYPE">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <label>Jenis Barang</label>
+                                        {{Form::text('jenisbarang', null, ['list'=>'jenis_bar','placeholder'=>'Jenis Barang','class'=>'form-control ','id'=>'pic','autocomplete'=>'off','rows'=>'10'])}}
+                                            <datalist  id="jenis_bar" rows="10">
+                                                @foreach($mb as $master)
+                                                    <option value="{{$master}}"></option>
+                                                @endforeach
+                                            </datalist>
                                     </div>
                                 </div>
                             </div>
