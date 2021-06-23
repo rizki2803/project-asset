@@ -18,7 +18,7 @@
                                 <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
                                     <thead>
                                     <tr>
-                                        <th>NO</th>
+                                        <th>NO REG</th>
                                         <th>KODE</th>
                                         <th>NAMA BARANG</th>
                                         <th>KATEGORI</th>
@@ -29,7 +29,7 @@
                                     </thead>
                                     <tfoot>
                                     <tr>
-                                        <th class="col-sm-1">NO</th>
+                                        <th class="col-sm-1">NO REG</th>
                                         <th class="col-sm-1">KODE</th>
                                         <th class="col-sm-5">NAMA BARANG</th>
                                         <th class="col-sm-2">KATEGORI</th>

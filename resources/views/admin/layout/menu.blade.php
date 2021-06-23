@@ -43,9 +43,9 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{asset('assets')}}/pages/helper-classes.html">
+                    <a href="{{route('list_p')}}">
                         <i class="material-icons">assignment</i>
-                        <span>Form Pengajuan<Keluar></Keluar></span>
+                        <span>List Pengajuan<Keluar></Keluar></span>
                     </a>
                 </li>
 

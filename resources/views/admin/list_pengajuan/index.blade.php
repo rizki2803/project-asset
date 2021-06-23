@@ -10,7 +10,7 @@
                     <div class="card">
                         <div class="header">
                             <h2>
-                                DATA STOK BARANG
+                                DATA LIST PENGAJUAN
                             </h2>
                         </div>
                         <div class="body">
@@ -19,26 +19,22 @@
                                     <thead>
                                     <tr>
                                         <th>NO REG</th>
-                                        <th>KODE</th>
+                                        <th>NAMA</th>
+                                        <th>DEPARTEMENT</th>
                                         <th>NAMA BARANG</th>
-                                        <th>KATEGORI</th>
-                                        <th>JUMLAH</th>
-                                        <th>SATUAN</th>
-                                        <th>KELUAR</th>
-                                        <th>MASUK</th>
+                                        <th>STATUS</th>
+                                        <th>UPD AT</th>
 
                                     </tr>
                                     </thead>
                                     <tfoot>
                                     <tr>
                                         <th class="col-sm-1">NO REG</th>
-                                        <th class="col-sm-1">KODE</th>
-                                        <th class="col-sm-4">NAMA BARANG</th>
-                                        <th class="col-sm-2">KATEGORI</th>
-                                        <th class="col-sm-1">JUMLAH</th>
-                                        <th class="col-sm-1">SATUAN</th>
-                                        <th class="col-sm-1">KELUAR</th>
-                                        <th class="col-sm-1">MASUK</th>
+                                        <th class="col-sm-3">NAMA</th>
+                                        <th class="col-sm-2">DEPARTEMENT</th>
+                                        <th class="col-sm-3">NAMA BARANG</th>
+                                        <th class="col-sm-1">STATUS</th>
+                                        <th class="col-sm-2">UPD AT</th>
 
                                     </tr>
                                     </tfoot>

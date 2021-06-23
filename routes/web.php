@@ -42,4 +42,6 @@ Route::get('/out_bar', [App\Http\Controllers\OutputController::class, 'index'])-
 
 Route::get('/', [App\Http\Controllers\PengajuanController::class, 'index'])->name('user');
 
+Route::get('/list_p', [App\Http\Controllers\PengajuanController::class, 'list_p'])->name('list_p');
+
 Route::get('/store', [App\Http\Controllers\PengajuanController::class, 'store_p'])->name('store_p');
