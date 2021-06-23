@@ -57,19 +57,20 @@
                 </ul>
                 <div class="tab-content">
                     <div role="tabpanel" class="tab-pane fade active in" id="home">
-                        <form class="tab-content">
+                        <form class="tab-content" method="post" action="{{route('store_p')}}">
+                            @csrf
                             <label>Pilih :</label>
                             <div class="form-group">
-                                <input type="radio" name="pil_aktif" id="pil_aktif"  value="NO" checked class="with-gap">
-                                <label for="pil_aktif"><b>Pengajuan Barang</b> </label>
-                                <input type="radio" name="pil_aktif" id="pil_aktif1" value="OK" checked class="with-gap">
-                                <label for="pil_aktif1"><b>Kerusakan Barang</b></label>
+                                <input type="radio" name="pengajuan" id="p_ada"  value="P" checked class="with-gap">
+                                <label for="p_ada"><b>Pengajuan Barang</b> </label>
+                                <input type="radio" name="pengajuan" id="p_rsk" value="K" checked class="with-gap">
+                                <label for="p_rsk"><b>Kerusakan Barang</b></label>
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <div class="form-line">
                                         <label>Nama Pegawai</label>
-                                        <input type="text" class="form-control" placeholder="Nama Pegawai">
+                                        <input id="nmusr" name="nmusr" type="text" class="form-control" placeholder="Nama Pegawai">
                                     </div>
                                 </div>
                             </div>
@@ -77,7 +78,7 @@
                                 <div class="form-group">
                                     <div class="form-line">
                                         <label>Departemen</label>
-                                        <input type="text" class="form-control" placeholder="DEPARTEMEN">
+                                        <input id="dprt" name="dprt" type="text" class="form-control" placeholder="DEPARTEMEN">
                                     </div>
                                 </div>
                             </div>
@@ -85,7 +86,7 @@
                                 <div class="form-group">
                                     <div class="form-line">
                                         <label>Email</label>
-                                        <input type="text" class="form-control" placeholder="EMAIL">
+                                        <input id="email" name="email" type="text" class="form-control" placeholder="EMAIL">
                                     </div>
                                 </div>
                             </div>
@@ -93,7 +94,7 @@
                                 <div class="form-group">
                                     <div class="form-line">
                                         <label>Nama Atasan</label>
-                                        <input type="text" class="form-control" placeholder="NAMA ATASAN">
+                                        <input id="atsn" name="atsn" type="text" class="form-control" placeholder="NAMA ATASAN">
                                     </div>
                                 </div>
                             </div>
@@ -101,7 +102,7 @@
                                 <div class="form-group">
                                     <div class="form-line">
                                         <label>Merk/Type</label>
-                                        <input  id="merk" name="nama_aktif" type="text" class="form-control" placeholder="MERK/TYPE">
+                                        <input  id="merk" name="merk" type="text" class="form-control" placeholder="MERK/TYPE">
                                     </div>
                                 </div>
                             </div>
@@ -119,10 +120,10 @@
                                 </div>
                             </div>
                             <div class="col-sm-12">
-                                <div class="form-group" id="form_instansi">
+                                <div class="form-group" id="form_asset">
                                     <div class="form-line">
                                         <label>NO Asset</label>
-                                        <input id="noasset" name="nama_aktif" type="text" class="form-control" placeholder="NO Asset">
+                                        <input id="asst" name="asst" type="text" class="form-control" placeholder="NO Asset">
                                     </div>
                                 </div>
                             </div>
@@ -130,7 +131,7 @@
                                 <div class="form-group">
                                     <div class="form-line">
                                         <label>Detail</label>
-                                        <input type="text" class="form-control" placeholder="DETAIL">
+                                        <input id="desk" name="desk" type="text" class="form-control" placeholder="DETAIL">
                                     </div>
                                 </div>
                             </div>
@@ -199,25 +200,21 @@
     $(function() {
 
         $(':radio').on('change', function() {
-            var noasset = $("input[name='pil_aktif']:checked").val();
+            var asset = $("input[name='pengajuan']:checked").val();
 
-            if (noasset == 'NO') {
+            if (asset == 'P') {
                 // console.log(Instansi);
-                $('#nama_instansi').val("");
-                $('#form_instansi').hide();
-                $('#nama_instansi').attr('enabled', true);
+                $('#asst').val("");
+                $('#form_asset').hide();
             } else {
                 // console.log(Instansi);
-                $('#form_instansi').show();
+                $('#form_asset').show();
 
-                $('#nama_instansi').attr('disabled', true);
+                $('#asst').attr('enabled', true);
             }
         })
             .filter(':checked').change();
 
-        $('.form-prevent-multiple-submits').on('submit', function(){
-            $('.button-prevent-multiple-submits').attr('disabled', 'true');
-        });
     });
 </script>
 
