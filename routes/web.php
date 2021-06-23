@@ -40,8 +40,7 @@ Route::get('/in_bar', [App\Http\Controllers\InputController::class, 'index'])->n
 
 Route::get('/out_bar', [App\Http\Controllers\OutputController::class, 'index'])->name('out_bar');
 
-Route::get('/', [App\Http\Controllers\PengajuanController::class, 'index'])->name('user');
-
 Route::get('/list_p', [App\Http\Controllers\PengajuanController::class, 'list_p'])->name('list_p');
 
-Route::get('/store', [App\Http\Controllers\PengajuanController::class, 'store_p'])->name('store_p');
+Route::get('/', [App\Http\Controllers\PengajuanController::class, 'index'])->name('user');
+    Route::post('/store', [App\Http\Controllers\PengajuanController::class, 'store_p'])->name('store_p');
