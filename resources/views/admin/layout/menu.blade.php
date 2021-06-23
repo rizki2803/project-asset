@@ -13,13 +13,13 @@
             <ul class="list">
                 <li class="header">MENU</li>
                 <li>
-                    <a href="{{asset('assets')}}/index.html">
+                    <a href="{{route('dashboard')}}">
                         <i class="material-icons">home</i>
                         <span>Home</span>
                     </a>
                 </li>
                 <li>
-                    <a href="{{asset('assets')}}/pages/typography.html">
+                    <a href="{{route('mstr_bar')}}">
                         <i class="material-icons">widgets</i>
                         <span>Master Barang</span>
                     </a>

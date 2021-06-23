@@ -69,7 +69,7 @@
                                 <div class="form-group">
                                     <div class="form-line">
                                         <label>Nama Pegawai</label>
-                                        <input type="text" class="form-control" placeholder="Nama Pegawai">
+                                        <input id="p_nmusr" type="text" class="form-control" placeholder="Nama Pegawai">
                                     </div>
                                 </div>
                             </div>
@@ -77,7 +77,7 @@
                                 <div class="form-group">
                                     <div class="form-line">
                                         <label>Departemen</label>
-                                        <input type="text" class="form-control" placeholder="DEPARTEMEN">
+                                        <input id="p_dprt" type="text" class="form-control" placeholder="DEPARTEMEN">
                                     </div>
                                 </div>
                             </div>
@@ -85,7 +85,7 @@
                                 <div class="form-group">
                                     <div class="form-line">
                                         <label>Email</label>
-                                        <input type="text" class="form-control" placeholder="EMAIL">
+                                        <input id="p_email" type="text" class="form-control" placeholder="EMAIL">
                                     </div>
                                 </div>
                             </div>
@@ -93,7 +93,7 @@
                                 <div class="form-group">
                                     <div class="form-line">
                                         <label>Nama Atasan</label>
-                                        <input type="text" class="form-control" placeholder="NAMA ATASAN">
+                                        <input id="p_atsn" type="text" class="form-control" placeholder="NAMA ATASAN">
                                     </div>
                                 </div>
                             </div>
@@ -101,7 +101,7 @@
                                 <div class="form-group">
                                     <div class="form-line">
                                         <label>Merk/Type</label>
-                                        <input  id="merk" name="nama_aktif" type="text" class="form-control" placeholder="MERK/TYPE">
+                                        <input  id="p_merk" name="nama_aktif" type="text" class="form-control" placeholder="MERK/TYPE">
                                     </div>
                                 </div>
                             </div>
@@ -109,7 +109,7 @@
                                 <div class="form-group" id="form_instansi">
                                     <div class="form-line">
                                         <label>NO Asset</label>
-                                        <input id="noasset" name="nama_aktif" type="text" class="form-control" placeholder="NO Asset">
+                                        <input id="p_asst" name="nama_aktif" type="text" class="form-control" placeholder="NO Asset">
                                     </div>
                                 </div>
                             </div>
@@ -117,7 +117,7 @@
                                 <div class="form-group">
                                     <div class="form-line">
                                         <label>Detail</label>
-                                        <input type="text" class="form-control" placeholder="DETAIL">
+                                        <input id="p_desk" type="text" class="form-control" placeholder="DETAIL">
                                     </div>
                                 </div>
                             </div>

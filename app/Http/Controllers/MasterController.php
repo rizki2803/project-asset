@@ -104,8 +104,7 @@ class MasterController extends Controller
     public function del_sb($id)
     {
         SatuanBarang::select('*')->where('sb_id', $id)->delete();
-
-        return redirect()->back();
+        return redirect()->back()->with('warning','User deleted successfully, Can not be returned!');
     }
 
     public function edit_sb($id)

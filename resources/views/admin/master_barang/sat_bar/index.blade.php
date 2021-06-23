@@ -1,4 +1,4 @@
-@extends('admin.layout.layout')
+    @extends('admin.layout.layout')
 @section('content')
 
     <section class="content">
@@ -58,7 +58,7 @@
                                                         <i class="material-icons">edit</i>
                                                     </a>
 
-                                                    <a href="{{route('del_sb',$satuan->sb_id)}}" class="btn btn-danger btn-xs waves-effect delete-confirm">
+                                                    <a href="{{route('del_sb',$satuan->sb_id)}}" class="btn btn-danger btn-xs waves-effect delete-confirm"   data-type="confirm">
                                                         <i class="material-icons">delete</i>
                                                     </a>
                                                 </td>
@@ -127,5 +127,12 @@
 
         </div>
     </section>
+    <!-- Bootstrap Notify Plugin Js -->
+    <script src="{{asset('assets')}}/plugins/bootstrap-notify/bootstrap-notify.js"></script>
 
+    <!-- Waves Effect Plugin Js -->
+    <script src="{{asset('assets')}}/plugins/node-waves/waves.js"></script>
+
+    <!-- SweetAlert Plugin Js -->
+    <script src="{{asset('assets')}}/plugins/sweetalert/sweetalert.min.js"></script>
 @endsection
