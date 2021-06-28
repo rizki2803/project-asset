@@ -18,8 +18,16 @@
                                         <i class="material-icons">more_vert</i>
                                     </a>
                                     <ul class="dropdown-menu pull-right">
-                                        <li><a onclick="crt()" data-toggle="modal" data-target="#ModalSatBar">Add Satuan Barang</a></li>
-                                        <li><a href="{{route('mstr_bar')}}">Back</a></li>
+                                        <li>
+                                            <a onclick="crt()" data-toggle="modal" data-target="#ModalSatBar">
+                                                <i class="material-icons">add_box</i>Satuan Barang
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="{{route('mstr_bar')}}">
+                                                <i class="material-icons">navigate_before</i>Back
+                                            </a>
+                                        </li>
                                     </ul>
                                 </li>
                             </ul>
@@ -87,7 +95,7 @@
                                 <div class="col-sm-12">
                                     <div class="form-group">
                                         <div class="form-line">
-                                            <input type="satuan" value="" class="form-control" name="sb_nm" id="sb_nm" placeholder="Nama Satuan" />
+                                            <input type="satuan" value="" class="form-control" name="sb_nm" id="sb_nm" required="required" placeholder="Nama Satuan" />
                                         </div>
                                     </div>
                                 </div>

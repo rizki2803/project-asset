@@ -12,6 +12,19 @@
                             <h2>
                                 DATA STOK BARANG KELUAR
                             </h2>
+                            <ul class="header-dropdown m-r--5">
+                                <li class="dropdown">
+                                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                        <i class="material-icons">more_vert</i>
+                                    </a>
+                                    <ul class="dropdown-menu pull-right">
+                                        <li><a onclick="crt()" data-toggle="modal" data-target="#addoutput">
+                                                <i class="material-icons">add_box</i>Input Data Keluar
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
                         </div>
                         <div class="body">
                             <div class="table-responsive">
@@ -48,6 +61,21 @@
                 </div>
             </div>
             <!-- #END-->
+
+            <!-- ADD OUTPUT BARANG -->
+            <div class="modal fade" id="addoutput" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        @include('admin.output_barang.form')
+                    </div>
+                </div>
+            </div>
+
+            <script>
+                function crt() {
+                }
+
+            </script>
 
         </div>
     </section>
