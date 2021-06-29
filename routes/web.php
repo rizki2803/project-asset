@@ -44,3 +44,7 @@ Route::get('/list_p', [App\Http\Controllers\PengajuanController::class, 'list_p'
 
 Route::get('/', [App\Http\Controllers\PengajuanController::class, 'index'])->name('user');
     Route::post('/store', [App\Http\Controllers\PengajuanController::class, 'store_p'])->name('store_p');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

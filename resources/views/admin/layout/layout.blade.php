@@ -73,6 +73,18 @@
             <a href="javascript:void(0);" class="bars"></a>
             <a class="navbar-brand" href="{{asset('assets')}}/index.html">INVENTORY IT</a>
         </div>
+        <div class="collapse navbar-collapse" id="navbar-collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li class="pull-right">
+                    <a class="js-right-sidebar">
+                        <button type="button" class="btn btn-default btn-sm waves-effect">
+                            <i class="material-icons">logout</i>
+                            <span>Logout</span>
+                        </button>
+                    </a>
+                </li>
+            </ul>
+        </div>
     </div>
 </nav>
 <!-- #Top Bar -->
