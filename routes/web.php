@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/login', [App\Http\Controllers\MasterController::class, 'index'])->name('dashboard');
+
 Route::get('/dashboard', [App\Http\Controllers\MasterController::class, 'index'])->name('dashboard');
 
 Route::get('/mstr_bar', [App\Http\Controllers\MasterController::class, 'mstr_bar'])->name('mstr_bar');

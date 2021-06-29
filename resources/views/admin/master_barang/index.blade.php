@@ -18,9 +18,21 @@
                                         <i class="material-icons">more_vert</i>
                                     </a>
                                     <ul class="dropdown-menu pull-right">
-                                        <li><a onclick="crt()" data-toggle="modal" data-target="#addmstr">Add Master Barang</a></li>
-                                        <li><a href="{{route('sat_bar')}}">Satuan Barang</a></li>
-                                        <li><a href="{{route('kat_bar')}}">Kategori Barang</a></li>
+                                        <li>
+                                            <a onclick="crt()" data-toggle="modal" data-target="#addmstr">
+                                                <i class="material-icons">add_box</i>Master Barang
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="{{route('sat_bar')}}">
+                                                <i class="material-icons">navigate_next</i>Satuan Barang
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="{{route('kat_bar')}}">
+                                                <i class="material-icons">navigate_next</i>Kategori Barang
+                                            </a>
+                                        </li>
                                     </ul>
                                 </li>
                             </ul>

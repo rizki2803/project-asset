@@ -1,4 +1,4 @@
-    @extends('admin.layout.layout')
+@extends('admin.layout.layout')
 @section('content')
 
     <section class="content">
@@ -18,8 +18,16 @@
                                         <i class="material-icons">more_vert</i>
                                     </a>
                                     <ul class="dropdown-menu pull-right">
-                                        <li><a onclick="crt()" data-toggle="modal" data-target="#ModalSatBar">Add Satuan Barang</a></li>
-                                        <li><a href="{{route('mstr_bar')}}">Back</a></li>
+                                        <li>
+                                            <a onclick="crt()" data-toggle="modal" data-target="#ModalSatBar">
+                                                <i class="material-icons">add_box</i>Satuan Barang
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="{{route('mstr_bar')}}">
+                                                <i class="material-icons">navigate_before</i>Back
+                                            </a>
+                                        </li>
                                     </ul>
                                 </li>
                             </ul>
@@ -58,7 +66,7 @@
                                                         <i class="material-icons">edit</i>
                                                     </a>
 
-                                                    <a href="{{route('del_sb',$satuan->sb_id)}}" class="btn btn-danger btn-xs waves-effect delete-confirm"   data-type="confirm">
+                                                    <a href="{{route('del_sb',$satuan->sb_id)}}" class="btn btn-danger btn-xs waves-effect delete-confirm">
                                                         <i class="material-icons">delete</i>
                                                     </a>
                                                 </td>
@@ -87,7 +95,7 @@
                                 <div class="col-sm-12">
                                     <div class="form-group">
                                         <div class="form-line">
-                                            <input type="satuan" value="" class="form-control" name="sb_nm" id="sb_nm" placeholder="Nama Satuan" />
+                                            <input type="satuan" value="" class="form-control" name="sb_nm" id="sb_nm" required="required" placeholder="Nama Satuan" />
                                         </div>
                                     </div>
                                 </div>
@@ -127,12 +135,5 @@
 
         </div>
     </section>
-    <!-- Bootstrap Notify Plugin Js -->
-    <script src="{{asset('assets')}}/plugins/bootstrap-notify/bootstrap-notify.js"></script>
 
-    <!-- Waves Effect Plugin Js -->
-    <script src="{{asset('assets')}}/plugins/node-waves/waves.js"></script>
-
-    <!-- SweetAlert Plugin Js -->
-    <script src="{{asset('assets')}}/plugins/sweetalert/sweetalert.min.js"></script>
 @endsection

@@ -18,8 +18,16 @@
                                         <i class="material-icons">more_vert</i>
                                     </a>
                                     <ul class="dropdown-menu pull-right">
-                                        <li><a onclick="crt()" data-toggle="modal" data-target="#ModalKatBar">Add Kategori Barang</a></li>
-                                        <li><a href="{{route('mstr_bar')}}">Back</a></li>
+                                        <li>
+                                            <a onclick="crt()" data-toggle="modal" data-target="#ModalKatBar">
+                                                <i class="material-icons">add_box</i>Kategori Barang
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="{{route('mstr_bar')}}">
+                                                <i class="material-icons">navigate_before</i>Back
+                                            </a>
+                                        </li>
                                     </ul>
                                 </li>
                             </ul>
@@ -91,14 +99,14 @@
                                 <div class="col-sm-9">
                                     <div class="form-group">
                                         <div class="form-line">
-                                            <input type="kategori" value="" class="form-control" name="kt_nm" id="kt_nm" placeholder="Nama Kategori" />
+                                            <input type="kategori" value="" class="form-control" name="kt_nm" id="kt_nm" required="required" placeholder="Nama Kategori" />
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-sm-3">
                                     <div class="form-group">
                                         <div class="form-line">
-                                            <input type="inisial" value="" class="form-control" name="kt_kode" id="kt_kode" placeholder="Inisial Kode" />
+                                            <input type="inisial" value="" class="form-control" name="kt_kode" id="kt_kode" required="required" placeholder="Inisial Kode" />
                                         </div>
                                     </div>
                                 </div>

@@ -2,7 +2,7 @@
 @section('content')
 
     <section class="content">
-       <div class="container-fluid" >
+        <div class="container-fluid" >
 
             <!-- Basic Examples -->
             <div class="row clearfix" >

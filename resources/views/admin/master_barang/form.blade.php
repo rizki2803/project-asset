@@ -7,21 +7,21 @@
         <div class="col-sm-6">
             <div class="form-group">
                 <div class="form-line">
-                    <input type="namabarang" value="" class="form-control" name="mb_nmbar" id="mb_nmbar" placeholder="Nama Barang" />
+                    <input type="namabarang" value="" class="form-control" name="mb_nmbar" id="mb_nmbar" required="required" placeholder="Nama Barang" />
                 </div>
             </div>
         </div>
         <div class="col-sm-3">
             <div class="form-group">
                 <div class="form-line">
-                    {{Form::select('satuan', $sb, null, ['class'=>'form-control ','id'=>'sb'])}}
+                    {{Form::select('satuan', $sb, null, ['class'=>'form-control ','id'=>'sb','required'=>'required'])}}
                 </div>
             </div>
         </div>
         <div class="col-sm-3">
             <div class="form-group">
                 <div class="form-line">
-                    {{Form::select('kategori', $kt, null, ['class'=>'form-control ','id'=>'kt'])}}
+                    {{Form::select('kategori', $kt, null, ['class'=>'form-control ','id'=>'kt','required'=>'required'])}}
                 </div>
             </div>
         </div>
