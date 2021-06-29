@@ -12,9 +12,11 @@ class PengajuanController extends Controller
 {
     public function list_p()
     {
-
-
-        return view('admin.list_pengajuan.index');
+        $data['mb']= pengajuan::select('*')
+            ->join('master_bar', 'master_bar.mb_id','=', 'bar_p.mb_id')
+            ->get();
+//dd($data);
+        return view('admin.list_pengajuan.index',$data);
     }
 
     public function index()
@@ -60,6 +62,7 @@ class PengajuanController extends Controller
                 'p_asst' => $request->asst,
                 'p_merk' => $request->merk,
                 'mb_id' => $mb->mb_id,
+                'p_pmrks' => $request->pmrks,
                 'p_desk' => $request->desk,
                 'p_tgl' => Carbon::now()->setTimezone('asia/jakarta'),
                 'p_cr_at' => now(),

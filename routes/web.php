@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
+Route::get('/login', [App\Http\Controllers\MasterController::class, 'index'])->name('dashboard');
 Route::get('/dashboard', [App\Http\Controllers\MasterController::class, 'index'])->name('dashboard');
 
 Route::get('/mstr_bar', [App\Http\Controllers\MasterController::class, 'mstr_bar'])->name('mstr_bar');
@@ -44,3 +44,11 @@ Route::get('/list_p', [App\Http\Controllers\PengajuanController::class, 'list_p'
 
 Route::get('/', [App\Http\Controllers\PengajuanController::class, 'index'])->name('user');
     Route::post('/store', [App\Http\Controllers\PengajuanController::class, 'store_p'])->name('store_p');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

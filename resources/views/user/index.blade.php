@@ -130,6 +130,14 @@
                             <div class="col-sm-12">
                                 <div class="form-group">
                                     <div class="form-line">
+                                        <label>Nama Pemeriksa</label>
+                                        <input id="p_pmrks" name="pmrks" type="text" class="form-control" placeholder="Nama Pemeriksa">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <div class="form-line">
                                         <label>Detail</label>
                                         <input id="desk" name="desk" type="text" class="form-control" placeholder="DETAIL">
                                     </div>

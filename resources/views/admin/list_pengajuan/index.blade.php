@@ -2,7 +2,7 @@
 @section('content')
 
     <section class="content">
-        <div class="container-fluid" >
+       <div class="container-fluid" >
 
             <!-- Basic Examples -->
             <div class="row clearfix" >
@@ -21,9 +21,9 @@
                                         <th>NO REG</th>
                                         <th>NAMA</th>
                                         <th>DEPARTEMENT</th>
-                                        <th>NAMA BARANG</th>
+                                        <th>MERK BARANG</th>
+                                        <th>PEMERIKSA</th>
                                         <th>STATUS</th>
-                                        <th>UPD AT</th>
 
                                     </tr>
                                     </thead>
@@ -32,14 +32,32 @@
                                         <th class="col-sm-1">NO REG</th>
                                         <th class="col-sm-3">NAMA</th>
                                         <th class="col-sm-2">DEPARTEMENT</th>
-                                        <th class="col-sm-3">NAMA BARANG</th>
-                                        <th class="col-sm-1">STATUS</th>
-                                        <th class="col-sm-2">UPD AT</th>
+                                        <th class="col-sm-2">MERK BARANG</th>
+                                        <th class="col-sm-1">PEMERIKSA</th>
+                                        <th class="col-sm-2">STATUS</th>
 
                                     </tr>
                                     </tfoot>
                                     <tbody>
-
+                                    @foreach($mb as $pengajuan)
+                                        <tr>
+                                            <td>
+                                                {{$pengajuan->p_reg}}
+                                            </td>
+                                            <td>
+                                                {{$pengajuan->p_nmusr}}
+                                            </td>
+                                            <td>
+                                                {{$pengajuan->p_dprt }}
+                                            </td>
+                                            <td>
+                                                {{$pengajuan->p_merk}}
+                                            </td>
+                                            <td>
+                                                {{$pengajuan->p_pmrks}}
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                     </tbody>
                                 </table>
                             </div>
@@ -48,7 +66,6 @@
                 </div>
             </div>
             <!-- #END-->
-
         </div>
     </section>
 
