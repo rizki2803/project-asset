@@ -34,7 +34,7 @@ Route::get('/mstr_bar', [App\Http\Controllers\MasterController::class, 'mstr_bar
         Route::post('/mstr_bar/sat_bar/upd/{sb_id}', [App\Http\Controllers\MasterController::class, 'upd_sb'])->name('upd_sb');
         Route::get('/mstr_bar/sat_bar/del/{sb_id}', [App\Http\Controllers\MasterController::class, 'del_sb'])->name('del_sb');
 
-Route::get('/stk_bar', [App\Http\Controllers\MasterController::class, 'stk_bar'])->name('stk_bar');
+Route::get('/srvc_bar', [App\Http\Controllers\MasterController::class, 'srvc_bar'])->name('srvc_bar');
 
 Route::get('/in_bar', [App\Http\Controllers\InputController::class, 'index'])->name('in_bar');
 

@@ -90,7 +90,7 @@
             <div class="modal fade" id="ModalKatBar" tabindex="-1" role="dialog">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
-                        <form id="form-kt" method="post" action="">
+                        <form id="form-kt" method="post" action="" onsubmit="submitbtn.disabled=true; return true;">
                             @csrf
                             <div class="modal-header">
                                 <h4 class="modal-title" id="ModalKatBarLabel">Masukkan Data Untuk Kategori Barang</h4>
@@ -112,7 +112,7 @@
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <button type="submit" class="btn btn-link waves-effect">SAVE CHANGES</button>
+                                <button type="submit" class="btn btn-link waves-effect" name="submitbtn">SAVE CHANGES</button>
                                 <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
                             </div>
                         </form>

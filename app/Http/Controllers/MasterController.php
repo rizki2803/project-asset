@@ -61,6 +61,7 @@ class MasterController extends Controller
             'kt_id' => $kt->kt_id,
             'sb_id' => $sb->sb_id,
             'mb_nmbar' => $mb_nmbar_conv,
+            'mb_minjml' => $request->mb_minjml,
             'mb_cr_at' => now()
 
         ];
@@ -97,6 +98,7 @@ class MasterController extends Controller
             'mb_id' => Uuid::uuid4(),
             'sb_id' => $sb->sb_id,
             'mb_nmbar' => $mb_nmbar_conv,
+            'mb_minjml' => $request->mb_minjml,
             'mb_up_at' => now()
 
         ];
@@ -218,12 +220,12 @@ class MasterController extends Controller
     }
 
 //END------------------------------SATUAN BARANG----------------------------------------------
-//------------------------------STOK BARANG----------------------------------------------
+//------------------------------SERVICE BARANG----------------------------------------------
 
-    public function stk_bar()
+    public function srvc_bar()
     {
-        return view('admin.stok_barang.index');
+        return view('admin.service_barang.index');
     }
 
-//END------------------------------SATUAN BARANG----------------------------------------------
+//END------------------------------SERVICE BARANG----------------------------------------------
 }

@@ -20,12 +20,6 @@
                 </li>
                 <li>
                     <a href="{{route('mstr_bar')}}">
-                        <i class="material-icons">widgets</i>
-                        <span>Master Barang</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="{{route('stk_bar')}}">
                         <i class="material-icons">layers</i>
                         <span>Stok Barang</span>
                     </a>
@@ -46,6 +40,12 @@
                     <a href="{{route('list_p')}}">
                         <i class="material-icons">assignment</i>
                         <span>List Pengajuan<Keluar></Keluar></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{route('srvc_bar')}}">
+                        <i class="material-icons">build</i>
+                        <span>Service Barang <Keluar></Keluar></span>
                     </a>
                 </li>
 

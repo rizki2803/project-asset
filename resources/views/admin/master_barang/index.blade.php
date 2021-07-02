@@ -10,7 +10,7 @@
                     <div class="card">
                         <div class="header">
                             <h2>
-                                DATA MASTER BARANG
+                                DATA STOK BARANG
                             </h2>
                             <ul class="header-dropdown m-r--5">
                                 <li class="dropdown">
@@ -20,7 +20,7 @@
                                     <ul class="dropdown-menu pull-right">
                                         <li>
                                             <a onclick="crt()" data-toggle="modal" data-target="#addmstr">
-                                                <i class="material-icons">add_box</i>Master Barang
+                                                <i class="material-icons">add_box</i>Stok Barang
                                             </a>
                                         </li>
                                         <li>
@@ -39,7 +39,7 @@
                         </div>
                         <div class="body">
                             <div class="table-responsive">
-                                <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
+                                <table class="table table-bordered table-hover js-basic-example dataTable">
                                     <thead>
                                     <tr>
                                         <th>NO</th>
@@ -48,6 +48,8 @@
                                         <th>NAMA BARANG</th>
                                         <th>SATUAN</th>
                                         <th>KATEGORI BARANG</th>
+                                        <th>JML STOK</th>
+                                        <th>MIN STOK</th>
                                     </tr>
                                     </thead>
                                     <tfoot>
@@ -55,17 +57,21 @@
                                         <th>NO</th>
                                         <th>ACT</th>
                                         <th>KODE</th>
-                                        <th class="col-sm-4">NAMA BARANG</th>
+                                        <th class="col-sm-3">NAMA BARANG</th>
                                         <th>SATUAN</th>
                                         <th>KATEGORI BARANG</th>
+                                        <th>JML STOK</th>
+                                        <th>MIN STOK</th>
                                     </tr>
                                     </tfoot>
                                     <tbody>
+                                    <div class="row clearfix js-sweetalert">
                                         @php
                                             $no=1;
                                         @endphp
+
                                         @foreach($mb as $master)
-                                            <tr>
+                                            <tr class="{{($master->mb_jml < $master->mb_minjml)?"bg-red":"white"}}">
                                                 <td>
                                                     {{$no++}}
                                                 </td>
@@ -74,7 +80,7 @@
                                                         <i class="material-icons">edit</i>
                                                     </a>
 
-                                                    <a href="{{route('del_mb',$master->mb_id)}}" class="btn btn-danger btn-xs waves-effect delete-confirm">
+                                                    <a href="{{route('del_mb',$master->mb_id)}}" class="btn btn-danger btn-xs waves-effect">
                                                         <i class="material-icons">delete</i>
                                                     </a>
                                                 </td>
@@ -90,8 +96,15 @@
                                                 <td>
                                                     {{$master->kt_nm}}
                                                 </td>
+                                                <td>
+                                                    {{($master->mb_jml == "")?"0":$master->mb_jml}}
+                                                </td>
+                                                <td>
+                                                    {{($master->mb_minjml == "")?"0":$master->mb_minjml}}
+                                                </td>
                                             </tr>
                                         @endforeach
+                                    </div>
                                     </tbody>
                                 </table>
                             </div>
@@ -116,6 +129,7 @@
                     $("#mb_nmbar").val("");
                     $("#kt").val("");
                     $("#sb").val("");
+                    $("#mb_minjml").val("");
                     $("#form-mb").attr("action", url);
                 }
 
@@ -130,11 +144,13 @@
                         $("#mb_nmbar").val(data.mb.mb_nmbar);
                         $("#kt").attr('disabled', 'true').val(data.mb.kt_nm);
                         $("#sb").val(data.mb.sb_nm);
+                        $("#mb_minjml").val(data.mb.mb_minjml);
                     });
 
                     $("#form-mb").attr("action", urlPost);
 
                 }
+
             </script>
 
         </div>
