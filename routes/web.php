@@ -37,6 +37,7 @@ Route::get('/mstr_bar', [App\Http\Controllers\MasterController::class, 'mstr_bar
 Route::get('/srvc_bar', [App\Http\Controllers\MasterController::class, 'srvc_bar'])->name('srvc_bar');
 
 Route::get('/in_bar', [App\Http\Controllers\InputController::class, 'index'])->name('in_bar');
+    Route::post('/in_bar/store', [App\Http\Controllers\InputController::class, 'store_in'])->name('store_in');
 
 Route::get('/out_bar', [App\Http\Controllers\OutputController::class, 'index'])->name('out_bar');
 

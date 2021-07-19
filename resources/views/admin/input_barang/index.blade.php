@@ -28,31 +28,52 @@
                         </div>
                         <div class="body">
                             <div class="table-responsive">
-                                <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
+                                <table class="table table-bordered table-hover js-basic-example dataTable text-nowrap">
                                     <thead>
                                     <tr>
+                                        <th>ACT</th>
                                         <th>NO REG</th>
+                                        <th>ASSET</th>
+                                        <th>TGL TERIMA</th>
+                                        <th>VENDOR</th>
                                         <th>KODE</th>
                                         <th>NAMA BARANG</th>
-                                        <th>KATEGORI</th>
+                                        <th>JML</th>
                                         <th>SATUAN</th>
-                                        <th>MASUK</th>
+                                        <th>PENERIMA</th>
+                                        <th>KETERANGAN</th>
 
                                     </tr>
                                     </thead>
                                     <tfoot>
                                     <tr>
-                                        <th class="col-sm-1">NO REG</th>
-                                        <th class="col-sm-1">KODE</th>
-                                        <th class="col-sm-5">NAMA BARANG</th>
-                                        <th class="col-sm-2">KATEGORI</th>
-                                        <th class="col-sm-2">SATUAN</th>
-                                        <th class="col-sm-1">MASUK</th>
-
+                                        <th>ACT</th>
+                                        <th>NO REG</th>
+                                        <th>ASSET</th>
+                                        <th>TGL TERIMA</th>
+                                        <th>VENDOR</th>
+                                        <th>KODE</th>
+                                        <th>NAMA BARANG</th>
+                                        <th>JML</th>
+                                        <th>SATUAN</th>
+                                        <th>PENERIMA</th>
+                                        <th>KETERANGAN</th>
                                     </tr>
                                     </tfoot>
                                     <tbody>
-
+                                    <tr>
+                                        <td>ACT</td>
+                                        <td>NO REG</td>
+                                        <td>ASSET</td>
+                                        <td>TGL TERIMA</td>
+                                        <td>VENDOR</td>
+                                        <td>KODE</td>
+                                        <td>NAMA BARANG</td>
+                                        <td>JML</td>
+                                        <td>SATUAN</td>
+                                        <td>PENERIMA</td>
+                                        <td>KETERANGAN</td>
+                                    </tr>
                                     </tbody>
                                 </table>
                             </div>
@@ -73,6 +94,11 @@
 
             <script>
                 function crt() {
+                    var url = "{{route('store_in')}}"
+
+                    console.log(url);
+
+                    $("#form-in").attr("action", url);
                 }
 
             </script>
