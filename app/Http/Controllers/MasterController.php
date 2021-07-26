@@ -95,7 +95,6 @@ class MasterController extends Controller
         $mb_nmbar_conv = strtoupper($request->mb_nmbar);
 
         $store = [
-            'mb_id' => Uuid::uuid4(),
             'sb_id' => $sb->sb_id,
             'mb_nmbar' => $mb_nmbar_conv,
             'mb_minjml' => $request->mb_minjml,

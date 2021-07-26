@@ -19,8 +19,8 @@ Route::get('/dashboard', [App\Http\Controllers\MasterController::class, 'index']
 Route::get('/mstr_bar', [App\Http\Controllers\MasterController::class, 'mstr_bar'])->name('mstr_bar');
     Route::post('/mstr_bar/store', [App\Http\Controllers\MasterController::class, 'store_mb'])->name('store_mb');
     Route::get('/mstr_bar/del/{mb_id}', [App\Http\Controllers\MasterController::class, 'del_mb'])->name('del_mb');
-    Route::get('/mstr_bar/edit/{kt_id}', [App\Http\Controllers\MasterController::class, 'edit_mb'])->name('edit_mb');
-    Route::post('/mstr_bar/upd/{kt_id}', [App\Http\Controllers\MasterController::class, 'upd_mb'])->name('upd_mb');
+    Route::get('/mstr_bar/edit/{mb_id}', [App\Http\Controllers\MasterController::class, 'edit_mb'])->name('edit_mb');
+    Route::post('/mstr_bar/upd/{mb_id}', [App\Http\Controllers\MasterController::class, 'upd_mb'])->name('upd_mb');
 
     Route::get('/mstr_bar/kat_bar', [App\Http\Controllers\MasterController::class, 'kat_bar'])->name('kat_bar');
         Route::post('/mstr_bar/kat_bar/store', [App\Http\Controllers\MasterController::class, 'store_kt'])->name('store_kt');
@@ -38,6 +38,10 @@ Route::get('/srvc_bar', [App\Http\Controllers\MasterController::class, 'srvc_bar
 
 Route::get('/in_bar', [App\Http\Controllers\InputController::class, 'index'])->name('in_bar');
     Route::post('/in_bar/store', [App\Http\Controllers\InputController::class, 'store_in'])->name('store_in');
+    Route::get('/in_bar/edit/{in_id}', [App\Http\Controllers\InputController::class, 'edit_in'])->name('edit_in');
+    Route::post('/in_bar/upd/{in_id}', [App\Http\Controllers\InputController::class, 'upd_in'])->name('upd_in');
+    Route::get('/in_bar/del/{in_id}', [App\Http\Controllers\InputController::class, 'del_in'])->name('del_in');
+
 
 Route::get('/out_bar', [App\Http\Controllers\OutputController::class, 'index'])->name('out_bar');
 

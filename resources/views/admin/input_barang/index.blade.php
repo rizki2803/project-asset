@@ -31,6 +31,7 @@
                                 <table class="table table-bordered table-hover js-basic-example dataTable text-nowrap">
                                     <thead>
                                     <tr>
+                                        <th>NO</th>
                                         <th>ACT</th>
                                         <th>NO REG</th>
                                         <th>ASSET</th>
@@ -47,6 +48,7 @@
                                     </thead>
                                     <tfoot>
                                     <tr>
+                                        <th>NO</th>
                                         <th>ACT</th>
                                         <th>NO REG</th>
                                         <th>ASSET</th>
@@ -61,19 +63,56 @@
                                     </tr>
                                     </tfoot>
                                     <tbody>
-                                    <tr>
-                                        <td>ACT</td>
-                                        <td>NO REG</td>
-                                        <td>ASSET</td>
-                                        <td>TGL TERIMA</td>
-                                        <td>VENDOR</td>
-                                        <td>KODE</td>
-                                        <td>NAMA BARANG</td>
-                                        <td>JML</td>
-                                        <td>SATUAN</td>
-                                        <td>PENERIMA</td>
-                                        <td>KETERANGAN</td>
-                                    </tr>
+                                    @php
+                                        $no=1;
+                                    @endphp
+
+                                    @foreach($in as $input)
+                                        <tr>
+                                            <td>
+                                                {{$no++}}
+                                            </td>
+                                            <td>
+                                                <a onclick="edit('{{$input->in_id}}')" class="btn btn-warning btn-xs waves-effect" id="editmb" data-toggle="modal" data-target="#addinput">
+                                                    <i class="material-icons">edit</i>
+                                                </a>
+
+                                                <a href="{{route('del_in',$input->in_id)}}" class="btn btn-danger btn-xs waves-effect">
+                                                    <i class="material-icons">delete</i>
+                                                </a>
+                                            </td>
+                                            <td>
+                                                {{$input->p_reg}}
+                                            </td>
+                                            <td>
+                                                {{$input->in_asst}}
+                                            </td>
+                                            <td>
+                                                {{$input->in_tgl}}
+                                            </td>
+                                            <td>
+                                                {{$input->in_vndr}}
+                                            </td>
+                                            <td>
+                                                {{$input->mb_kode}}
+                                            </td>
+                                            <td>
+                                                {{$input->mb_nmbar}}
+                                            </td>
+                                            <td>
+                                                {{$input->in_jml}}
+                                            </td>
+                                            <td>
+                                                {{$input->sb_nm}}
+                                            </td>
+                                            <td>
+                                                {{$input->in_pjwb}}
+                                            </td>
+                                            <td>
+                                                {{$input->in_ket}}
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                     </tbody>
                                 </table>
                             </div>
@@ -93,13 +132,44 @@
             </div>
 
             <script>
+
                 function crt() {
                     var url = "{{route('store_in')}}"
-
-                    console.log(url);
-
+                    $("#reg").val("");
+                    $("#nmusr").val("");
+                    $("#dprt").val("");
+                    $("#asst").val("");
+                    $("#nmbarang").val("");
+                    $("#vndr").val("");
+                    $("#jml").val("");
+                    $("#ket").val("");
+                    $("#pjwb").val("");
                     $("#form-in").attr("action", url);
                 }
+
+                function edit(id) {
+                    var urlGet = "{{route('edit_in','iniuuidinput')}}";
+                    urlGet = urlGet.replace('iniuuidinput',id);
+
+                    var urlPost = "{{route('upd_in','iniuuidinput')}}";
+                    urlPost = urlPost.replace('iniuuidinput',id);
+
+                    $.get(urlGet, function(data){
+                        $("#reg").attr('disabled', 'true').val(data.in.p_reg);
+                        $("#nmusr").attr('disabled', 'true').val(data.in.p_nmusr);
+                        $("#dprt").attr('disabled', 'true').val(data.in.p_dprt);
+                        $("#asst").val(data.in.in_asst);
+                        $("#nmbarang").attr('disabled', 'true').val(data.in.mb_nmbar);
+                        $("#vndr").val(data.in.in_vndr);
+                        $("#jml").attr('disabled', 'true').val(data.in.in_jml);
+                        $("#ket").val(data.in.in_ket);
+                        $("#pjwb").val(data.in.in_pjwb);
+                    });
+
+                    $("#form-in").attr("action", urlPost);
+
+                }
+
 
             </script>
 
