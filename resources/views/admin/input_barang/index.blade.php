@@ -135,13 +135,13 @@
 
                 function crt() {
                     var url = "{{route('store_in')}}"
-                    $("#reg").val("");
-                    $("#nmusr").val("");
-                    $("#dprt").val("");
+                    $("#reg").attr('disabled', false).val("");
+                    $("#nmusr").attr('disabled', false).val("");
+                    $("#dprt").attr('disabled', false).val("");
                     $("#asst").val("");
-                    $("#nmbarang").val("");
+                    $("#nmbarang").attr('disabled', false).val("");
                     $("#vndr").val("");
-                    $("#jml").val("");
+                    $("#jml").attr('disabled', false).val("");
                     $("#ket").val("");
                     $("#pjwb").val("");
                     $("#form-in").attr("action", url);
@@ -155,13 +155,13 @@
                     urlPost = urlPost.replace('iniuuidinput',id);
 
                     $.get(urlGet, function(data){
-                        $("#reg").attr('disabled', 'true').val(data.in.p_reg);
-                        $("#nmusr").attr('disabled', 'true').val(data.in.p_nmusr);
-                        $("#dprt").attr('disabled', 'true').val(data.in.p_dprt);
+                        $("#reg").attr('disabled', true).val(data.in.p_reg);
+                        $("#nmusr").attr('disabled', true).val(data.in.p_nmusr);
+                        $("#dprt").attr('disabled', true).val(data.in.p_dprt);
                         $("#asst").val(data.in.in_asst);
-                        $("#nmbarang").attr('disabled', 'true').val(data.in.mb_nmbar);
+                        $("#nmbarang").attr('disabled', true).val(data.in.mb_nmbar);
                         $("#vndr").val(data.in.in_vndr);
-                        $("#jml").attr('disabled', 'true').val(data.in.in_jml);
+                        $("#jml").attr('disabled', true).val(data.in.in_jml);
                         $("#ket").val(data.in.in_ket);
                         $("#pjwb").val(data.in.in_pjwb);
                     });

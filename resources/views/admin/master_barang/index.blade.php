@@ -127,7 +127,7 @@
                 function crt() {
                     var url = "{{route('store_mb')}}"
                     $("#mb_nmbar").val("");
-                    $("#kt").val("");
+                    $("#kt").attr('disabled', false).val("");
                     $("#sb").val("");
                     $("#mb_minjml").val("");
                     $("#form-mb").attr("action", url);
@@ -142,7 +142,7 @@
 
                     $.get(urlGet, function(data){
                         $("#mb_nmbar").val(data.mb.mb_nmbar);
-                        $("#kt").attr('disabled', 'true').val(data.mb.kt_nm);
+                        $("#kt").attr('disabled', true).val(data.mb.kt_nm);
                         $("#sb").val(data.mb.sb_nm);
                         $("#mb_minjml").val(data.mb.mb_minjml);
                     });
