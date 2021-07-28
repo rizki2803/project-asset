@@ -44,6 +44,10 @@ Route::get('/in_bar', [App\Http\Controllers\InputController::class, 'index'])->n
 
 
 Route::get('/out_bar', [App\Http\Controllers\OutputController::class, 'index'])->name('out_bar');
+    Route::post('/out_bar/store', [App\Http\Controllers\OutputController::class, 'store_out'])->name('store_out');
+    Route::get('/out_bar/edit/{out_id}', [App\Http\Controllers\OutputController::class, 'edit_out'])->name('edit_out');
+    Route::post('/out_bar/upd/{out_id}', [App\Http\Controllers\OutputController::class, 'upd_out'])->name('upd_out');
+    Route::get('/out_bar/del/{out_id}', [App\Http\Controllers\OutputController::class, 'del_out'])->name('del_out');
 
 Route::get('/list_p', [App\Http\Controllers\PengajuanController::class, 'list_p'])->name('list_p');
 
