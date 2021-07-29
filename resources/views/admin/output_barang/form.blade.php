@@ -1,7 +1,7 @@
 <form id="form-out" class="form-horizontal" method="post" action="" onsubmit="submitbtn.disabled=true; return true;">
     @csrf
     <div class="modal-header">
-        <h4 class="modal-title" id="ModalInputLabel">Masukkan Data Untuk Kedatangan Barang</h4>
+        <h4 class="modal-title" id="ModalInputLabel">Masukkan Data Untuk Keluaran Barang</h4>
     </div>
     <div class="modal-body clearfix">
         <div class="col-sm-5">
