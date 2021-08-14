@@ -16,6 +16,12 @@
     <!-- Bootstrap Core Css -->
     <link href="{{asset('assets')}}/plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
 
+    <!-- Bootstrap Material Datetime Picker Css -->
+    <link href="{{asset('assets')}}/plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css" rel="stylesheet" />
+
+    <!-- Bootstrap DatePicker Css -->
+    <link href="{{asset('assets')}}/plugins/bootstrap-datepicker/css/bootstrap-datepicker.css" rel="stylesheet" />
+
     <!-- Waves Effect Css -->
     <link href="{{asset('assets')}}/plugins/node-waves/waves.css" rel="stylesheet" />
 

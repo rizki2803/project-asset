@@ -1,6 +1,10 @@
 @extends('admin.layout.layout')
 @section('content')
 
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/datetime/1.0.2/js/dataTables.dateTime.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
     <section class="content">
         <div class="container-fluid" >
 
@@ -27,6 +31,32 @@
                             </ul>
                         </div>
                         <div class="body">
+
+                            <div class="row clearfix">
+                                <form method="get" action="{{url('/in_bar')}}">
+                                    <div class="col-xs-6">
+                                        <div class="input-daterange input-group" id="bs_datepicker_range_container">
+                                            <div class="form-line">
+                                                <input type="text" readonly id="min" name="min" value="" class="form-control" placeholder="Date start..."/>
+                                            </div>
+                                            <span class="input-group-addon">to</span>
+                                            <div class="form-line">
+                                                <input type="text" readonly id="max" name="max" value="" class="form-control" placeholder="Date end..."/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-3">
+                                        &nbsp;&nbsp;&nbsp;&nbsp;
+                                        <button type="submit" id="date_filter" name="date_filter" class="btn btn-xs btn-secondary waves-effect">
+                                            <i class="material-icons">search</i>search
+                                        </button>
+                                        <a href="{{url('/in_bar')}}" class="btn btn-xs btn-primary waves-effect">
+                                            <i class="material-icons">sync</i>refresh
+                                        </a>
+                                    </div>
+                                </form>
+                            </div>
+
                             <div class="table-responsive">
                                 <table class="table table-bordered table-hover js-basic-example dataTable text-nowrap">
                                     <thead>

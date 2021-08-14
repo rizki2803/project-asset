@@ -86,11 +86,10 @@
 <!-- Custom Js -->
 <script src="{{asset('assets')}}/js/admin.js"></script>
 <script src="{{asset('assets')}}/js/pages/examples/profile.js"></script>
+<script src="{{asset('assets')}}/js/pages/forms/basic-form-elements.js"></script>
 
 <!-- Demo Js -->
 <script src="{{asset('assets')}}/js/demo.js"></script>
-
-
 
 <!-- Jquery DataTable Plugin Js -->
 <script src="{{asset('assets')}}/plugins/jquery-datatable/jquery.dataTables.js"></script>
@@ -98,6 +97,19 @@
 
 <!-- Custom Js -->
 <script src="{{asset('assets')}}/js/pages/tables/jquery-datatable.js"></script>
+
+<!-- Autosize Plugin Js -->
+<script src="{{asset('assets')}}/plugins/autosize/autosize.js"></script>
+
+<!-- Moment Plugin Js -->
+<script src="{{asset('assets')}}/plugins/momentjs/moment.js"></script>
+
+<!-- Bootstrap Material Datetime Picker Plugin Js -->
+<script src="{{asset('assets')}}/plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js"></script>
+
+<!-- Bootstrap Datepicker Plugin Js -->
+<script src="{{asset('assets')}}/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+
 
 </body>
 
