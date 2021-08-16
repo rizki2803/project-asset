@@ -44,6 +44,7 @@
                 <h1 class="m-0 text-light"><font color="white">HARIFF</font></h1>
                 <small><font color="white">PT.Hariff Daya Tunggal Engineering</font></small>
             </center>
+            <br/>
         </div><!-- /.col -->
     </div>
 </div>
