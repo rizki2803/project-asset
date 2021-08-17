@@ -83,10 +83,10 @@
             <ul class="nav navbar-nav navbar-right">
                 <li class="pull-right">
                     <a class="js-right-sidebar">
-                        <button type="button" class="btn btn-default btn-sm waves-effect">
-                            <i class="material-icons">logout</i>
-                            <span>Logout</span>
-                        </button>
+                        <form action="{{route('logout')}}" method="post">
+                            @csrf
+                            <span><button type="submit" class="btn-default btn-sm">Logout</button></span>
+                        </form>
                     </a>
                 </li>
             </ul>
