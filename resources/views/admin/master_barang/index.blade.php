@@ -39,32 +39,6 @@
                         </div>
 
                         <div class="body">
-
-                            <div class="row clearfix">
-                                <form method="get" action="{{url('/mstr_bar')}}">
-                                    <div class="col-xs-6">
-                                        <div class="input-daterange input-group" id="bs_datepicker_range_container">
-                                            <div class="form-line">
-                                                <input type="text" readonly id="min" name="min" value="" class="form-control" placeholder="Date start..."/>
-                                            </div>
-                                            <span class="input-group-addon">to</span>
-                                            <div class="form-line">
-                                                <input type="text" readonly id="max" name="max" value="" class="form-control" placeholder="Date end..."/>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-3">
-                                        &nbsp;&nbsp;&nbsp;&nbsp;
-                                        <button type="submit" id="date_filter" name="date_filter" class="btn btn-xs btn-secondary waves-effect">
-                                            <i class="material-icons">search</i>search
-                                        </button>
-                                        <a href="{{url('/mstr_bar')}}" class="btn btn-xs btn-primary waves-effect">
-                                            <i class="material-icons">sync</i>refresh
-                                        </a>
-                                    </div>
-                                </form>
-                            </div>
-
                             <div class="table-responsive">
                                 <table class="table table-bordered table-hover js-basic-example dataTable">
                                     <thead>
