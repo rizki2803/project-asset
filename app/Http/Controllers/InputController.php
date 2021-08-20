@@ -12,15 +12,33 @@ use Ramsey\Uuid\Uuid;
 class InputController extends Controller
 {
 
-    public function index()
+    public function index(Request $request)
         {
-            $data ['in']= Input::select('*')
+            if(($request->has('min')) && ($request->has('max'))) {
+                $data ['in']=Input::select('*')
+                    ->join('master_bar', 'master_bar.mb_id','=', 'in_bar.mb_id')
+                    ->join('sat_bar', 'sat_bar.sb_id','=', 'master_bar.sb_id')
+                    ->join('bar_p', 'bar_p.p_id','=', 'in_bar.p_id')
+                    ->wherebetween('in_tgl',[$request->min.' 00:00:00', $request->max.' 23:59:59'])
+                    ->get();
+                //dd($request->min, $request->max);
+            }
+            else {
+                //dd($request->date_filter);
+                $data ['in']= Input::select('*')
+                    ->join('master_bar', 'master_bar.mb_id','=', 'in_bar.mb_id')
+                    ->join('sat_bar', 'sat_bar.sb_id','=', 'master_bar.sb_id')
+                    ->join('bar_p', 'bar_p.p_id','=', 'in_bar.p_id')
+                    ->get();
+            }
+
+            /*$data ['in']= Input::select('*')
                 ->join('master_bar', 'master_bar.mb_id','=', 'in_bar.mb_id')
                 ->join('sat_bar', 'sat_bar.sb_id','=', 'master_bar.sb_id')
                 ->join('bar_p', 'bar_p.p_id','=', 'in_bar.p_id')
                 ->get();
 //            dd($data);
-
+*/
             $data ['mb'] = Master::pluck('mb_nmbar', 'mb_nmbar');
 
             $data ['bp'] = Pengajuan::pluck('p_reg', 'p_reg');
@@ -129,6 +147,14 @@ class InputController extends Controller
 
         return redirect()->back();
 
+    }
+
+    public function isi_in($reg)
+    {
+        $dataIsi ['in']= Pengajuan::select('*')->where('p_reg', $reg)->first();
+        //dd($data);
+
+        return $dataIsi;
     }
 
 }

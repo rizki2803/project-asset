@@ -1,10 +1,6 @@
 @extends('admin.layout.layout')
 @section('content')
 
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/datetime/1.0.2/js/dataTables.dateTime.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
     <section class="content">
         <div class="container-fluid" >
 
@@ -163,6 +159,16 @@
 
             <script>
 
+                function isi_otomatis(){
+                    var reg = $("#reg").val();
+                    var urlGet = "{{route('isi_in','iniuuidinput')}}";
+                    urlGet = urlGet.replace('iniuuidinput',reg);
+                    $.get(urlGet, function(data){
+                        $("#nmusr").val(data.in.p_nmusr);
+                        $("#dprt").val(data.in.p_dprt);
+                    });
+                }
+
                 function crt() {
                     var url = "{{route('store_in')}}"
                     $("#reg").attr('disabled', false).val("");
@@ -199,6 +205,24 @@
                     $("#form-in").attr("action", urlPost);
 
                 }
+
+                $(document).ready(function(){
+
+                    var minDate, maxDate;
+
+                    // Refilter the table
+                    $('#min, #max').on('change', function () {
+                        // Create date inputs
+                        minDate = new DateTime($('#min'), {
+                            format: 'MM/DD/YYYY'
+                        });
+                        maxDate = new DateTime($('#max'), {
+                            format: 'MM/DD/YYYY'
+                        });
+
+                    });
+
+                });
 
 
             </script>

@@ -8,7 +8,7 @@
             <div class="form-group">
                 <label>No Registrasi</label>
                 <div class="form-line">
-                    {{Form::text('reg', null, ['list'=>'nreg','placeholder'=>'Masukkan No REG User','class'=>'form-control ','id'=>'reg','autocomplete'=>'off','rows'=>'10'])}}
+                    {{Form::text('reg', null, ['list'=>'nreg','placeholder'=>'Masukkan No REG User','class'=>'form-control ','id'=>'reg','autocomplete'=>'off','rows'=>'10','onkeyup'=>'isi_otomatis()'])}}
                     <datalist  id="nreg" rows="10">
                         @foreach($bp as $master)
                             <option value="{{$master}}"></option>

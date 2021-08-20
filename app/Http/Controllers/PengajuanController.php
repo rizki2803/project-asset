@@ -47,7 +47,7 @@ class PengajuanController extends Controller
             $kode = $p_katKode.$conv_kodeTahun.$kodeAngka;
         //--END-Pembuatan KODE
 
-            $mb = Master::select('*')->where('mb_nmbar', $request->jenisbarang)->first();
+            //$mb = Master::select('*')->where('mb_nmbar', $request->jenisbarang)->first();
 
             $store = [
                 'p_id' => Uuid::uuid4(),
@@ -59,7 +59,7 @@ class PengajuanController extends Controller
                 'p_atsn' => $request->atsn,
                 'p_asst' => $request->asst,
                 'p_merk' => $request->merk,
-                'mb_id' => $mb->mb_id,
+                //'mb_id' => $mb->mb_id,
                 'p_desk' => $request->desk,
                 'p_tgl' => Carbon::now()->setTimezone('asia/jakarta'),
                 'p_cr_at' => now(),

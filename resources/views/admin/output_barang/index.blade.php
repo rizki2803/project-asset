@@ -149,6 +149,16 @@
 
             <script>
 
+                function isi_otomatis(){
+                    var reg = $("#reg").val();
+                    var urlGet = "{{route('isi_in','iniuuidinput')}}";
+                    urlGet = urlGet.replace('iniuuidinput',reg);
+                    $.get(urlGet, function(data){
+                        $("#nmusr").val(data.in.p_nmusr);
+                        $("#dprt").val(data.in.p_dprt);
+                    });
+                }
+
                 function crt() {
                     var url = "{{route('store_out')}}"
                     $("#reg").attr('disabled', false).val("");
@@ -181,6 +191,24 @@
                     $("#form-out").attr("action", urlPost);
 
                 }
+
+                $(document).ready(function(){
+
+                    var minDate, maxDate;
+
+                    // Refilter the table
+                    $('#min, #max').on('change', function () {
+                        // Create date inputs
+                        minDate = new DateTime($('#min'), {
+                            format: 'MM/DD/YYYY'
+                        });
+                        maxDate = new DateTime($('#max'), {
+                            format: 'MM/DD/YYYY'
+                        });
+
+                    });
+
+                });
 
             </script>
 

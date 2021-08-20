@@ -61,6 +61,7 @@ Route::middleware([\App\Http\Middleware\Login_cek::class])->group(function () {
         Route::get('/in_bar/edit/{in_id}', [App\Http\Controllers\InputController::class, 'edit_in'])->name('edit_in');
         Route::post('/in_bar/upd/{in_id}', [App\Http\Controllers\InputController::class, 'upd_in'])->name('upd_in');
         Route::get('/in_bar/del/{in_id}', [App\Http\Controllers\InputController::class, 'del_in'])->name('del_in');
+        Route::get('/in_bar/isi/{p_reg}', [App\Http\Controllers\InputController::class, 'isi_in'])->name('isi_in');
 
 
     Route::get('/out_bar', [App\Http\Controllers\OutputController::class, 'index'])->name('out_bar');
@@ -68,7 +69,7 @@ Route::middleware([\App\Http\Middleware\Login_cek::class])->group(function () {
         Route::get('/out_bar/edit/{out_id}', [App\Http\Controllers\OutputController::class, 'edit_out'])->name('edit_out');
         Route::post('/out_bar/upd/{out_id}', [App\Http\Controllers\OutputController::class, 'upd_out'])->name('upd_out');
         Route::get('/out_bar/del/{out_id}', [App\Http\Controllers\OutputController::class, 'del_out'])->name('del_out');
-
+        Route::get('/out_bar/isi/{p_reg}', [App\Http\Controllers\OutputController::class, 'isi_out'])->name('isi_out');
 });
 
 Route::get('/list_p', [App\Http\Controllers\PengajuanController::class, 'list_p'])->name('list_p');
