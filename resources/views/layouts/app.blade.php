@@ -1,83 +1,92 @@
-<!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<!DOCTYPE html>
+<html>
+<style>
+    .background {
+        background: linear-gradient(to right, #2a1f4c 45%, #ef9b11 80%)
+    }
+</style>
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <title>PT.Hariff DTE</title>
+    <!-- Favicon-->
+    <link rel="icon" href="{{asset('assets')}}/favicon.ico" type="image/x-icon">
 
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <!-- Bootstrap Core Css -->
+    <link href="{{asset('assets')}}/plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <!-- Waves Effect Css -->
+    <link href="{{asset('assets')}}/plugins/node-waves/waves.css" rel="stylesheet" />
 
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <!-- Animation Css -->
+    <link href="{{asset('assets')}}/plugins/animate-css/animate.css" rel="stylesheet" />
 
-    <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <!-- Custom Css -->
+    <link href="{{asset('assets')}}/css/style.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
+
+    <!-- Sweet Alert Css -->
+    <link href="{{asset('assets')}}/plugins/sweetalert/sweetalert.css" rel="stylesheet" />
+
+
+    <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
+    <link href="{{asset('assets')}}/css/themes/all-themes.css" rel="stylesheet" />
 </head>
-<body>
-    <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
-
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
-                        <!-- Authentication Links -->
-                        @guest
-                            @if (Route::has('login'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                                </li>
-                            @endif
-
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
-                        @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
-                                </a>
-
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                        @endguest
-                    </ul>
-                </div>
+<body class="login-page background">
+        <div class="login-box">
+            <div class="logo">
+                <center><img class="profile-user-img img-fluid img-circle" src="{{asset('img')}}/HariffLogo1.jpeg" alt="User profile picture">
+                <a href="javascript:void(0);"><b>PT.HARIFF DTE</b></a>
+                <small>Daya Tunggal Engineering</small>
             </div>
-        </nav>
 
-        <main class="py-4">
-            @yield('content')
-        </main>
-    </div>
+                @yield('content')
+        </div>
+
+<!-- Jquery Core Js -->
+<script src="{{asset('assets')}}/plugins/jquery/jquery.min.js"></script>
+
+<!-- Bootstrap Core Js -->
+<script src="{{asset('assets')}}/plugins/bootstrap/js/bootstrap.js"></script>
+
+<!-- Waves Effect Plugin Js -->
+<script src="{{asset('assets')}}/plugins/node-waves/waves.js"></script>
+
+<!-- Validation Plugin Js -->
+<script src="{{asset('assets')}}/plugins/jquery-validation/jquery.validate.js"></script>
+<!-- Demo Js -->
+<script src="{{asset('assets')}}/js/demo.js"></script>
+<!-- Select Plugin Js -->
+<script src="{{asset('assets')}}/plugins/bootstrap-select/js/bootstrap-select.js"></script>
+
+<!-- Slimscroll Plugin Js -->
+<script src="{{asset('assets')}}/plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
+
+<!-- Waves Effect Plugin Js -->
+<script src="{{asset('assets')}}/plugins/node-waves/waves.js"></script>
+
+<!-- SweetAlert Plugin Js -->
+<script src="{{asset('assets')}}/plugins/sweetalert/sweetalert.min.js"></script>
+
+<!-- Bootstrap Notify Plugin Js -->
+<script src="{{asset('assets')}}/plugins/bootstrap-notify/bootstrap-notify.js"></script>
+
+<!-- Custom Js -->
+<script src="{{asset('assets')}}/js/admin.js"></script>
+<script src="{{asset('assets')}}/js/pages/ui/dialogs.js"></script>
+
+<!-- Custom Js -->
+<script src="{{asset('assets')}}/js/admin.js"></script>
+<script src="{{asset('assets')}} /js/pages/examples/sign-in.js"></script>
 </body>
+
 </html>
+
+
