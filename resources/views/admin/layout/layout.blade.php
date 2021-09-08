@@ -16,6 +16,12 @@
     <!-- Bootstrap Core Css -->
     <link href="{{asset('assets')}}/plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
 
+    <!-- Bootstrap Material Datetime Picker Css -->
+    <link href="{{asset('assets')}}/plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css" rel="stylesheet" />
+
+    <!-- Bootstrap DatePicker Css -->
+    <link href="{{asset('assets')}}/plugins/bootstrap-datepicker/css/bootstrap-datepicker.css" rel="stylesheet" />
+
     <!-- Waves Effect Css -->
     <link href="{{asset('assets')}}/plugins/node-waves/waves.css" rel="stylesheet" />
 
@@ -77,10 +83,10 @@
             <ul class="nav navbar-nav navbar-right">
                 <li class="pull-right">
                     <a class="js-right-sidebar">
-                        <button type="button" class="btn btn-default btn-sm waves-effect">
-                            <i class="material-icons">logout</i>
-                            <span>Logout</span>
-                        </button>
+                        <form action="{{route('logout')}}" method="post">
+                            @csrf
+                            <span><button type="submit" class="btn-default btn-sm">Logout</button></span>
+                        </form>
                     </a>
                 </li>
             </ul>

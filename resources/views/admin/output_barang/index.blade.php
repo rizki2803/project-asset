@@ -27,32 +27,108 @@
                             </ul>
                         </div>
                         <div class="body">
+
+                            <div class="row clearfix">
+                                <form method="get" action="{{url('/out_bar')}}">
+                                    <div class="col-xs-6">
+                                        <div class="input-daterange input-group" id="bs_datepicker_range_container">
+                                            <div class="form-line">
+                                                <input type="text" readonly id="min" name="min" value="" class="form-control" placeholder="Date start..."/>
+                                            </div>
+                                            <span class="input-group-addon">to</span>
+                                            <div class="form-line">
+                                                <input type="text" readonly id="max" name="max" value="" class="form-control" placeholder="Date end..."/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-3">
+                                        &nbsp;&nbsp;&nbsp;&nbsp;
+                                        <button type="submit" id="date_filter" name="date_filter" class="btn btn-xs btn-secondary waves-effect">
+                                            <i class="material-icons">search</i>search
+                                        </button>
+                                        <a href="{{url('/out_bar')}}" class="btn btn-xs btn-primary waves-effect">
+                                            <i class="material-icons">sync</i>refresh
+                                        </a>
+                                    </div>
+                                </form>
+                            </div>
+
                             <div class="table-responsive">
-                                <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
+                                <table class="table table-bordered table-hover js-basic-example dataTable text-nowrap">
                                     <thead>
                                     <tr>
+                                        <th>NO</th>
+                                        <th>ACT</th>
                                         <th>NO REG</th>
+                                        <th>TGL KELUAR</th>
                                         <th>KODE</th>
                                         <th>NAMA BARANG</th>
-                                        <th>KATEGORI</th>
+                                        <th>JML</th>
                                         <th>SATUAN</th>
-                                        <th>KELUAR</th>
-
+                                        <th>PEMBERI</th>
+                                        <th>KETERANGAN</th>
                                     </tr>
                                     </thead>
                                     <tfoot>
                                     <tr>
-                                        <th class="col-sm-1">NO REG</th>
-                                        <th class="col-sm-1">KODE</th>
-                                        <th class="col-sm-5">NAMA BARANG</th>
-                                        <th class="col-sm-2">KATEGORI</th>
-                                        <th class="col-sm-2">SATUAN</th>
-                                        <th class="col-sm-1">KELUAR</th>
+                                        <th>NO</th>
+                                        <th>ACT</th>
+                                        <th>NO REG</th>
+                                        <th>TGL KELUAR</th>
+                                        <th>KODE</th>
+                                        <th>NAMA BARANG</th>
+                                        <th>JML</th>
+                                        <th>SATUAN</th>
+                                        <th>PEMBERI</th>
+                                        <th>KETERANGAN</th>
 
                                     </tr>
                                     </tfoot>
                                     <tbody>
+                                    @php
+                                        $no=1;
+                                    @endphp
 
+                                    @foreach($out as $output)
+                                        <tr>
+                                            <td>
+                                                {{$no++}}
+                                            </td>
+                                            <td>
+                                                <a onclick="edit('{{$output->out_id}}')" class="btn btn-warning btn-xs waves-effect" id="editmb" data-toggle="modal" data-target="#addoutput">
+                                                    <i class="material-icons">edit</i>
+                                                </a>
+
+                                                <a href="{{route('del_out',$output->out_id)}}" class="btn btn-danger btn-xs waves-effect">
+                                                    <i class="material-icons">delete</i>
+                                                </a>
+                                            </td>
+                                            <td>
+                                                {{$output->p_reg}}
+                                            </td>
+                                            <td>
+                                                {{$output->out_tgl}}
+                                            </td>
+                                            <td>
+                                                {{$output->mb_kode}}
+                                            </td>
+                                            <td>
+                                                {{$output->mb_nmbar}}
+                                            </td>
+                                            <td>
+                                                {{$output->out_jml}}
+                                            </td>
+                                            <td>
+                                                {{$output->sb_nm}}
+                                            </td>
+                                            <td>
+                                                {{$output->out_pjwb}}
+                                            </td>
+                                            <td>
+                                                {{$output->out_ket}}
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                     </tbody>
                                 </table>
                             </div>
@@ -72,8 +148,67 @@
             </div>
 
             <script>
-                function crt() {
+
+                function isi_otomatis(){
+                    var reg = $("#reg").val();
+                    var urlGet = "{{route('isi_in','iniuuidinput')}}";
+                    urlGet = urlGet.replace('iniuuidinput',reg);
+                    $.get(urlGet, function(data){
+                        $("#nmusr").val(data.in.p_nmusr);
+                        $("#dprt").val(data.in.p_dprt);
+                    });
                 }
+
+                function crt() {
+                    var url = "{{route('store_out')}}"
+                    $("#reg").attr('disabled', false).val("");
+                    $("#nmusr").attr('disabled', false).val("");
+                    $("#dprt").attr('disabled', false).val("");
+                    $("#nmbarang").attr('disabled', false).val("");
+                    $("#jml").attr('disabled', false).val("");
+                    $("#ket").val("");
+                    $("#pjwb").val("");
+                    $("#form-out").attr("action", url);
+                }
+
+                function edit(id) {
+                    var urlGet = "{{route('edit_out','iniuuidoutput')}}";
+                    urlGet = urlGet.replace('iniuuidoutput',id);
+
+                    var urlPost = "{{route('upd_out','iniuuidoutput')}}";
+                    urlPost = urlPost.replace('iniuuidoutput',id);
+
+                    $.get(urlGet, function(data){
+                        $("#reg").attr('disabled', true).val(data.out.p_reg);
+                        $("#nmusr").attr('disabled', true).val(data.out.p_nmusr);
+                        $("#dprt").attr('disabled', true).val(data.out.p_dprt);
+                        $("#nmbarang").attr('disabled', true).val(data.out.mb_nmbar);
+                        $("#jml").attr('disabled', true).val(data.out.out_jml);
+                        $("#ket").val(data.out.out_ket);
+                        $("#pjwb").val(data.out.out_pjwb);
+                    });
+
+                    $("#form-out").attr("action", urlPost);
+
+                }
+
+                $(document).ready(function(){
+
+                    var minDate, maxDate;
+
+                    // Refilter the table
+                    $('#min, #max').on('change', function () {
+                        // Create date inputs
+                        minDate = new DateTime($('#min'), {
+                            format: 'MM/DD/YYYY'
+                        });
+                        maxDate = new DateTime($('#max'), {
+                            format: 'MM/DD/YYYY'
+                        });
+
+                    });
+
+                });
 
             </script>
 

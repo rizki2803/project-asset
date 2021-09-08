@@ -86,7 +86,7 @@
                 <div class="modal-dialog modal-sm" role="document">
                     <div class="modal-content">
 
-                        <form id="form-sb" method="post" action="">
+                        <form id="form-sb" method="post" action="" onsubmit="submitbtn.disabled=true; return true;">
                             @csrf
                             <div class="modal-header">
                                 <h4 class="modal-title" id="ModalSatBarLabel">Masukkan Data Untuk Satuan Barang</h4>
@@ -101,7 +101,7 @@
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <button type="submit" class="btn btn-link waves-effect">SAVE CHANGES</button>
+                                <button type="submit" class="btn btn-link waves-effect" name="submitbtn">SAVE CHANGES</button>
                                 <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
                             </div>
                         </form>
