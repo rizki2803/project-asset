@@ -37,6 +37,9 @@
     <!-- JQuery DataTable Css -->
     <link href="{{asset('assets')}}/plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css" rel="stylesheet">
 
+    <!-- Sweetalert Css -->
+    <link href="{{asset('assets')}}/plugins/sweetalert/sweetalert.css" rel="stylesheet" />
+
 </head>
 
 <body class="theme-red">

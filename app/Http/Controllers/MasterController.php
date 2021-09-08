@@ -68,7 +68,7 @@ class MasterController extends Controller
 
         Master::select('*')->insert($store);
 
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Update Successfully...');
     }
 
     public function del_mb($id)
@@ -104,7 +104,7 @@ class MasterController extends Controller
 
         Master::select('*')->where('mb_id', $id)->update($store);
 
-        return redirect()->back();
+        return redirect()->back()->with('warning','Update Successfully!!!');
 
     }
 //END------------------------------MASTER BARANG----------------------------------------------
@@ -131,7 +131,7 @@ class MasterController extends Controller
         ];
 
         KategoriBarang::select('*')->insert($store);
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Update Successfully...');
     }
 
     public function del_kt($id)
@@ -160,7 +160,7 @@ class MasterController extends Controller
         ];
 
         KategoriBarang::select('*')->where('kt_id', $id)->update($store);
-        return redirect()->route('kat_bar');
+        return redirect()->route('kat_bar')->with('warning','Update Successfully!!!');
 
     }
 
@@ -186,7 +186,7 @@ class MasterController extends Controller
         ];
 
         SatuanBarang::select('*')->insert($store);
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Update Successfully...');
     }
 
     public function del_sb($id)
@@ -214,7 +214,7 @@ class MasterController extends Controller
         ];
 
         SatuanBarang::select('*')->where('sb_id', $id)->update($store);
-        return redirect()->route('sat_bar');
+        return redirect()->route('sat_bar')->with('warning','Update Successfully!!!');
 
     }
 

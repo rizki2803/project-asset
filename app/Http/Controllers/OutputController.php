@@ -75,7 +75,7 @@ class OutputController extends Controller
             'p_id' => $bp->p_id,
             's_id' => $srvc,
             'out_cr_by' => strtoupper($request->pjwb),
-            'out_cr_at' => now()
+            'out_cr_at' => now()->addMinute()
 
         ];
 
@@ -83,7 +83,7 @@ class OutputController extends Controller
 
         Master::select('*')->where('mb_id', $mb->mb_id)->update($storeStok);
 
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Update Successfully...');
 
     }
 
@@ -135,7 +135,7 @@ class OutputController extends Controller
 
         Output::select('*')->where('out_id', $id)->update($store);
 
-        return redirect()->back();
+        return redirect()->back()->with('warning','Update Successfully!!!');
 
     }
 

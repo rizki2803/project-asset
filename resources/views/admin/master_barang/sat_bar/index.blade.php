@@ -3,7 +3,18 @@
 
     <section class="content">
         <div class="container-fluid">
-
+            @if ($message = Session::get('success'))
+                <div class="alert alert-success alert-block">
+                    <button type="button" class="close" data-dismiss="alert">×</button>
+                    <strong>{{ $message }}</strong>
+                </div>
+            @endif
+            @if ($message = Session::get('warning'))
+                    <div class="alert alert-warning alert-block">
+                        <button type="button" class="close" data-dismiss="alert">×</button>
+                        <strong>{{ $message }}</strong>
+                    </div>
+            @endif
             <!-- Basic Examples -->
             <div class="row clearfix">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -33,7 +44,7 @@
                             </ul>
                         </div>
                         <div class="body">
-                            <div class="table-responsive">
+                            <div class="table-responsive js-sweetalert">
                                 <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
                                     <thead>
                                         <tr>
@@ -66,7 +77,7 @@
                                                         <i class="material-icons">edit</i>
                                                     </a>
 
-                                                    <a href="{{route('del_sb',$satuan->sb_id)}}" class="btn btn-danger btn-xs waves-effect delete-confirm">
+                                                    <a onclick="del('{{$satuan->sb_id}}')" class="btn btn-danger btn-xs waves-effect delete-confirm">
                                                         <i class="material-icons">delete</i>
                                                     </a>
                                                 </td>
@@ -130,6 +141,24 @@
 
                         $("#form-sb").attr("action", urlPost);
 
+                    }
+
+                    function del(id) {
+                        var url = "{{route('del_sb','iniuuidsatuan')}}";
+                        url = url.replace('iniuuidsatuan',id);
+
+                        swal({
+                            title: "Apakah Anda Akan Menghapus Data Ini?",
+                            text: "Data Yang Dihapus Tidak Akan Bisa Kembali!",
+                            type: "warning",
+                            showCancelButton: true,
+                            confirmButtonColor: "#DD6B55",
+                            confirmButtonText: "Yes",
+                            closeOnConfirm: false
+                        }, function () {
+                            swal("Deleted!", "Data Berhasil di Hapus.", "success");
+                            window.location.href = url;
+                        });
                     }
                 </script>
 

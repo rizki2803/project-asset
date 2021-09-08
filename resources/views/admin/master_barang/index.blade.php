@@ -3,7 +3,18 @@
 
     <section class="content">
         <div class="container-fluid" >
-
+            @if ($message = Session::get('success'))
+                <div class="alert alert-success alert-block">
+                    <button type="button" class="close" data-dismiss="alert">×</button>
+                    <strong>{{ $message }}</strong>
+                </div>
+            @endif
+            @if ($message = Session::get('warning'))
+                <div class="alert alert-warning alert-block">
+                    <button type="button" class="close" data-dismiss="alert">×</button>
+                    <strong>{{ $message }}</strong>
+                </div>
+            @endif
             <!-- Basic Examples -->
             <div class="row clearfix" >
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -81,7 +92,7 @@
                                                         <i class="material-icons">edit</i>
                                                     </a>
 
-                                                    <a href="{{route('del_mb',$master->mb_id)}}" class="btn btn-danger btn-xs waves-effect">
+                                                    <a onclick="del('{{$master->mb_id}}')" class="btn btn-danger btn-xs waves-effect">
                                                         <i class="material-icons">delete</i>
                                                     </a>
                                                 </td>
@@ -153,6 +164,23 @@
 
                 }
 
+                function del(id) {
+                    var url = "{{route('del_mb','iniuuidmaster')}}";
+                    url = url.replace('iniuuidmaster',id);
+
+                    swal({
+                        title: "Apakah Anda Akan Menghapus Data Ini?",
+                        text: "Data Yang Dihapus Tidak Akan Bisa Kembali!",
+                        type: "warning",
+                        showCancelButton: true,
+                        confirmButtonColor: "#DD6B55",
+                        confirmButtonText: "Yes",
+                        closeOnConfirm: false
+                    }, function () {
+                        swal("Deleted!", "Data Berhasil di Hapus.", "success");
+                        window.location.href = url;
+                    });
+                }
             </script>
 
         </div>
