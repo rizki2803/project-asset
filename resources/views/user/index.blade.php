@@ -1,10 +1,15 @@
 <!DOCTYPE html>
 <html>
-
+<style>
+    .background {
+        background: linear-gradient(to right, #2a1f4c 45%, #ef9b11 80%)
+    }
+</style>
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <title>Sign In | Bootstrap Based Admin Template - Material Design</title>
+    <link rel="shortcut icon" href="{{asset('img')}}/HariffLogo.png" />
+    <title>PT.Hariff DTE</title>
     <!-- Favicon-->
     <link rel="icon" href="{{asset('assets')}}/favicon.ico" type="image/x-icon">
 
@@ -21,111 +26,148 @@
     <!-- Animation Css -->
     <link href="{{asset('assets')}}/plugins/animate-css/animate.css" rel="stylesheet" />
 
+    <!-- Sweet Alert Css -->
+    <link href="{{asset('assets')}}/plugins/sweetalert/sweetalert.css" rel="stylesheet" />
+
     <!-- Custom Css -->
     <link href="{{asset('assets')}}/css/style.css" rel="stylesheet">
+
+    <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
+    <link href="{{asset('assets')}}/css/themes/all-themes.css" rel="stylesheet" />
 </head>
-
-<body class="login-page">
-<div class="login-box">
-    <div class="logo">
-        <a href="javascript:void(0);">Admin<b>BSB</b></a>
-        <small>Admin BootStrap Based - Material Design</small>
+<body class="background">
+<div class="content-header">
+    <div class="container">
+        <div class="col-md-12">
+            <center>
+                <img class="profile-user-img img-fluid img-circle" src="{{asset('img')}}/HariffLogo1.jpeg" alt="AdminBSB - Profile Image">
+                <h1 class="m-0 text-light"><font color="white">HARIFF</font></h1>
+                <small><font color="white">PT.Hariff Daya Tunggal Engineering</font></small>
+            </center>
+            <br/>
+        </div><!-- /.col -->
     </div>
-    <div class="card">
-        <div class="body">
-            <!-- Nav tabs -->
-            <ul class="nav nav-tabs tab-nav-right" role="tablist">
-                <li role="presentation" class="active"><a href="#home" data-toggle="tab" aria-expanded="true">HOME</a></li>
-                <li role="presentation" class=""><a href="#profile" data-toggle="tab" aria-expanded="false">PROFILE</a></li>
-                <li role="presentation" class=""><a href="#messages" data-toggle="tab" aria-expanded="false">MESSAGES</a></li>
-            </ul>
-            <div class="tab-content">
-                <div role="tabpanel" class="tab-pane fade active in" id="home">
-                    <b>PILIH :</b>
-                    <div class="form-group">
-                        <input type="radio" name="user" id="rusak" class="with-gap">
-                        <label for="rusak">Kerusakan Barang </label>
+</div>
+<div class="container">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="body">
+                <ul class="nav nav-tabs tab-nav-right" role="tablist">
+                    <li role="presentation" class="active"><a href="#home" data-toggle="tab" aria-expanded="true">FORM</a></li>
+                    <li role="presentation" class=""><a href="#profile" data-toggle="tab" aria-expanded="false">CHECK PENGAJUAN</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane fade active in" id="home">
+                        <form class="tab-content" method="post" action="{{route('store_p')}}">
+                            @csrf
+                            <label>Pilih :</label>
+                            <div class="form-group">
+                                <input type="radio" name="pengajuan" id="p_ada"  value="P" checked class="with-gap">
+                                <label for="p_ada"><b>Pengajuan Barang</b> </label>
+                                <input type="radio" name="pengajuan" id="p_rsk" value="K" checked class="with-gap">
+                                <label for="p_rsk"><b>Kerusakan Barang</b></label>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <label>Nama Pegawai</label>
+                                        <input id="nmusr" name="nmusr" type="text" class="form-control" placeholder="Nama Pegawai">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <label>Departemen</label>
+                                        <input id="dprt" name="dprt" type="text" class="form-control" placeholder="DEPARTEMEN">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <label>Email</label>
+                                        <input id="email" name="email" type="text" class="form-control" placeholder="EMAIL">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <label>Nama Atasan</label>
+                                        <input id="atsn" name="atsn" type="text" class="form-control" placeholder="NAMA ATASAN">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <label>Merk/Type</label>
+                                        <input  id="merk" name="merk" type="text" class="form-control" placeholder="MERK/TYPE">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <label>Jenis Barang</label>
+                                        {{Form::text('jenisbarang', null, ['list'=>'jenis_bar','placeholder'=>'Jenis Barang','class'=>'form-control ','id'=>'pic','autocomplete'=>'off','rows'=>'10'])}}
+                                            <datalist  id="jenis_bar" rows="10">
+                                                @foreach($mb as $master)
+                                                    <option value="{{$master}}"></option>
+                                                @endforeach
+                                            </datalist>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="form-group" id="form_asset">
+                                    <div class="form-line">
+                                        <label>NO Asset</label>
+                                        <input id="asst" name="asst" type="text" class="form-control" placeholder="NO Asset">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <label>Detail</label>
+                                        <input id="desk" name="desk" type="text" class="form-control" placeholder="DETAIL">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row clearfix js-sweetalert">
+                                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                    <button class="btn btn-primary waves-effect" data-type="success">SUBMIT</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
 
-                        <input type="radio" name="user" id="pengajuan" class="with-gap">
-                        <label for="pengajuan" class="m-l-20">Pengajuan Barang </label>
-                    </div>
-                    <b>NAMA PEGAWAI</b>
-                        <div class="form-group">
-                            <div class="form-line">
-                                <input type="text" class="form-control" placeholder="NAMA PEGAWAI">
+                    <!-- aset -->
+                    <div role="tabpanel" class="tab-pane fade" id="profile">
+                        <form class="tab-content">
+                            <label>Silahkan Masukan Kode Registasi</label>
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <input type="text" class="form-control" placeholder="Kode Regist">
+                                </div>
                             </div>
-                        </div>
-                    <b>DEPARTEMEN</b>
-                        <div class="form-group">
-                            <div class="form-line">
-                                <input type="text" class="form-control" placeholder="DEPARTEMEN">
-                            </div>
-                        </div>
-                    <b>EMAIL</b>
-                    <div class="form-group">
-                        <div class="form-line">
-                            <input type="text" class="form-control" placeholder="EMAIL">
-                        </div>
-                    </div>
-                    <b>NAMA ATAS</b>
-                    <div class="form-group">
-                        <div class="form-line">
-                            <input type="text" class="form-control" placeholder="NAMA ATASAN">
-                        </div>
-                    </div>
-                    <b>NO ASSET</b>
-                    <div class="form-group">
-                        <div class="form-line">
-                            <input type="text" class="form-control" placeholder="NO ASSET">
-                        </div>
-                    </div>
-                    <b>MERK/TYPE</b>
-                    <div class="form-group">
-                        <div class="form-line">
-                            <input type="text" class="form-control" placeholder="MERK/TYPE">
-                        </div>
+                            <button class="btn btn-primary waves-effect" type="submit">SUBMIT</button>
+                        </form>
                     </div>
                 </div>
-                <div role="tabpanel" class="tab-pane fade" id="profile">
-                    <b>Profile Content</b>
-                    <div class="form-group">
-                        <div class="form-line">
-                            <input type="text" class="form-control" placeholder="EMAIL">
-                        </div>
-                    </div>
-                    <p>
-                        Lorem ipsum dolor sit amet, ut duo atqui exerci dicunt, ius impedit mediocritatem an. Pri ut tation electram moderatius.
-                        Per te suavitate democritum. Duis nemore probatus ne quo, ad liber essent aliquid
-                        pro. Et eos nusquam accumsan, vide mentitum fabellas ne est, eu munere gubergren
-                        sadipscing mel.
-                    </p>
-                </div>
-                <div role="tabpanel" class="tab-pane fade" id="messages">
-                    <b>Message Content</b>
-                    <p>
-                        Lorem ipsum dolor sit amet, ut duo atqui exerci dicunt, ius impedit mediocritatem an. Pri ut tation electram moderatius.
-                        Per te suavitate democritum. Duis nemore probatus ne quo, ad liber essent aliquid
-                        pro. Et eos nusquam accumsan, vide mentitum fabellas ne est, eu munere gubergren
-                        sadipscing mel.
-                    </p>
-                </div>
-                <div role="tabpanel" class="tab-pane fade" id="settings">
-                    <b>Settings Content</b>
-                    <p>
-                        Lorem ipsum dolor sit amet, ut duo atqui exerci dicunt, ius impedit mediocritatem an. Pri ut tation electram moderatius.
-                        Per te suavitate democritum. Duis nemore probatus ne quo, ad liber essent aliquid
-                        pro. Et eos nusquam accumsan, vide mentitum fabellas ne est, eu munere gubergren
-                        sadipscing mel.
-                    </p>
-                </div>
-                </div>
-            </form>
+
+            </div>
         </div>
     </div>
 </div>
-</div>
+</body>
+</html>
 
 
+
+<!-- #END# Multi Column -->
 
 <!-- Jquery Core Js -->
 <script src="{{asset('assets')}}/plugins/jquery/jquery.min.js"></script>
@@ -133,15 +175,48 @@
 <!-- Bootstrap Core Js -->
 <script src="{{asset('assets')}}/plugins/bootstrap/js/bootstrap.js"></script>
 
+<!-- Select Plugin Js -->
+<script src="{{asset('assets')}}/plugins/bootstrap-select/js/bootstrap-select.js"></script>
+
+<!-- Slimscroll Plugin Js -->
+<script src="{{asset('assets')}}/plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
+
 <!-- Waves Effect Plugin Js -->
 <script src="{{asset('assets')}}/plugins/node-waves/waves.js"></script>
 
-<!-- Validation Plugin Js -->
-<script src="{{asset('assets')}}/plugins/jquery-validation/jquery.validate.js"></script>
+<!-- SweetAlert Plugin Js -->
+<script src="{{asset('assets')}}/plugins/sweetalert/sweetalert.min.js"></script>
+
+<!-- Bootstrap Notify Plugin Js -->
+<script src="{{asset('assets')}}/plugins/bootstrap-notify/bootstrap-notify.js"></script>
 
 <!-- Custom Js -->
 <script src="{{asset('assets')}}/js/admin.js"></script>
-<script src="{{asset('assets')}}/js/pages/examples/sign-in.js"></script>
-</body>
+<script src="{{asset('assets')}}/js/pages/ui/dialogs.js"></script>
 
-</html>
+<!-- Demo Js -->
+<script src="{{asset('assets')}}/js/demo.js"></script>
+
+<script>
+    $(function() {
+
+        $(':radio').on('change', function() {
+            var asset = $("input[name='pengajuan']:checked").val();
+
+            if (asset == 'P') {
+                // console.log(Instansi);
+                $('#asst').val("");
+                $('#form_asset').hide();
+            } else {
+                // console.log(Instansi);
+                $('#form_asset').show();
+
+                $('#asst').attr('enabled', true);
+            }
+        })
+            .filter(':checked').change();
+
+    });
+</script>
+
+

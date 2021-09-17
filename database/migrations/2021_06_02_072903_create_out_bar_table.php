@@ -19,7 +19,13 @@ class CreateOutBarTable extends Migration
             $table->uuid('mb_id')->nullable();
             $table->string('out_pjwb')->nullable();
             $table->uuid('p_id')->nullable();
+            $table->uuid('s_id')->nullable();
             $table->string('out_ket')->nullable();
+            $table->integer('out_jml')->nullable();
+            $table->string('out_cr_by')->nullable();
+            $table->datetime('out_cr_at')->nullable();
+            $table->string('out_up_by')->nullable();
+            $table->datetime('out_up_at')->nullable();
             $table->timestamps();
         });
     }
