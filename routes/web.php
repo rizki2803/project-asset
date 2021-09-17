@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/create-account',function(){
+Route::get('/create-user',function(){
 
 
         $data[] = [
@@ -27,7 +27,22 @@ Route::get('/create-account',function(){
         ];
 
     DB::table('users')->insert($data);
+
+Route::get('/create-account',function(){
+
+        $data[] = [
+            'nik' => ('123'),
+            'name' => ('farhan'),
+            'departemen' => ('IT'),
+            'email' => ('farhan@gmail.com'),
+            'email_verified_at' => now(),
+            'password' => bcrypt('farhan'),
+            'remember_token' => Str::random(10),
+        ];
+
+    DB::table('users')->insert($data);
 });
+
 
 Route::middleware([\App\Http\Middleware\Login_cek::class])->group(function () {
 
@@ -82,3 +97,18 @@ Route::get('/', [App\Http\Controllers\PengajuanController::class, 'index'])->nam
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+    Route::get('/detail-kode-regis', [App\Http\Controllers\PengajuanController::class, 'detailKodeRegistrasi'])->name('user.detailKodeRegistrasi');
+    Route::get('tesnotif', [App\Http\Controllers\PengajuanController::class, 'notiftes']);
+    Route::get('getDataPegawai/{nik}', [App\Http\Controllers\PengajuanController::class, 'getDataPegawai'])->name('user.getDataPegawai');
+    Route::get('/pengajuanBarang/{kode_reg}/{p_token}', [App\Http\Controllers\PengajuanController::class, 'approve'])->name('user.pengajuanBarang.atasan.approve');
+    Route::get('/pengajuanBarang/{kode_reg}/1/{p_token}', [App\Http\Controllers\PengajuanController::class, 'approveseq1'])->name('user.pengajuanBarang.atasan.seq1.approve');
+    Route::get('/pengajuanBarang/{kode_reg}/2/{p_token}', [App\Http\Controllers\PengajuanController::class, 'approveseq2'])->name('user.pengajuanBarang.atasan.seq2.approve');
+    Route::get('/pengajuanBarang/reject/{kode_reg}/{p_token}', [App\Http\Controllers\PengajuanController::class, 'reject'])->name('user.pengajuanBarang.atasan.reject');
+    Route::post('/pengajuanBarang/store/reject/{kode_reg}/{p_token}', [App\Http\Controllers\PengajuanController::class, 'StoreReject'])->name('user.pengajuanBarang.atasan.storeReject');
+    Route::get('get-data/{p_reg}', function ($p_reg){
+        $data = App\Models\Approve::join('bar_p', 'bar_p.p_id', '=', 'aprv.p_id')->where('bar_p.p_reg', $p_reg)
+            ->orderBy('a_seq', 'ASC')
+            ->get();
+        return view('data-tabel', ['data' => $data]);
+    });

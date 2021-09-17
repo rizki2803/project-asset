@@ -28,16 +28,28 @@
 
     <!-- Custom Css -->
     <link href="{{asset('assets')}}/css/style.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
+
+    <!-- Sweet Alert Css -->
+    <link href="{{asset('assets')}}/plugins/sweetalert/sweetalert.css" rel="stylesheet" />
+
+
+    <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
+    <link href="{{asset('assets')}}/css/themes/all-themes.css" rel="stylesheet" />
 </head>
 
 <body class="login-page background">
-<div class="login-box">
+        <div class="login-box">
+            <div class="logo">
+                <center><img class="profile-user-img img-fluid img-circle" src="{{asset('img')}}/HariffLogo1.jpeg" alt="User profile picture">
+                <a href="javascript:void(0);"><b>PT.HARIFF DTE</b></a>
+                <small>Daya Tunggal Engineering</small>
+            </div>
 
-    <main class="py-4">
-        @yield('content')
-    </main>
-
-</div>
+                @yield('content')
+        </div>
 
 <!-- Jquery Core Js -->
 <script src="{{asset('assets')}}/plugins/jquery/jquery.min.js"></script>
@@ -50,14 +62,33 @@
 
 <!-- Validation Plugin Js -->
 <script src="{{asset('assets')}}/plugins/jquery-validation/jquery.validate.js"></script>
+<!-- Demo Js -->
+<script src="{{asset('assets')}}/js/demo.js"></script>
+<!-- Select Plugin Js -->
+<script src="{{asset('assets')}}/plugins/bootstrap-select/js/bootstrap-select.js"></script>
+
+<!-- Slimscroll Plugin Js -->
+<script src="{{asset('assets')}}/plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
+
+<!-- Waves Effect Plugin Js -->
+<script src="{{asset('assets')}}/plugins/node-waves/waves.js"></script>
+
+<!-- SweetAlert Plugin Js -->
+<script src="{{asset('assets')}}/plugins/sweetalert/sweetalert.min.js"></script>
+
+<!-- Bootstrap Notify Plugin Js -->
+<script src="{{asset('assets')}}/plugins/bootstrap-notify/bootstrap-notify.js"></script>
 
 <!-- Custom Js -->
 <script src="{{asset('assets')}}/js/admin.js"></script>
-<script src="{{asset('assets')}}/js/pages/examples/sign-in.js"></script>
+<script src="{{asset('assets')}}/js/pages/ui/dialogs.js"></script>
+
+<!-- Custom Js -->
+<script src="{{asset('assets')}}/js/admin.js"></script>
+<script src="{{asset('assets')}} /js/pages/examples/sign-in.js"></script>
+>>>>>>> origin/main
 </body>
 
 </html>
 
-    </div>
-</body>
-</html>
+
