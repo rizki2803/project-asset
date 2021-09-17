@@ -1,13 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="logo">
-        <center>
-            <img class="img-fluid img-circle" src="{{asset('img')}}/HariffLogo1.jpeg" alt="AdminBSB - Profile Image">
-            <h1 class="m-0 text-light"><font color="white">HARIFF</font></h1>
-            <small><font color="white">PT.Hariff Daya Tunggal Engineering</font></small>
-        </center>
-    </div>
     <div class="card">
         <div class="body">
             <form id="sign_in" method="POST" action="{{ route('login') }}">

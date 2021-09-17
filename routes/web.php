@@ -13,20 +13,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/create-user',function(){
+Route::get('/create-user',function() {
 
 
-        $data[] = [
-            'nik' => ('123'),
-            'name' => ('farhan'),
-            'departemen' => ('IT'),
-            'email' => ('farhan@gmail.com'),
-            'email_verified_at' => now(),
-            'password' => bcrypt('farhan'),
-            'remember_token' => Str::random(10),
-        ];
+    $data[] = [
+        'nik' => ('123'),
+        'name' => ('farhan'),
+        'departemen' => ('IT'),
+        'email' => ('farhan@gmail.com'),
+        'email_verified_at' => now(),
+        'password' => bcrypt('farhan'),
+        'remember_token' => Str::random(10),
+    ];
 
     DB::table('users')->insert($data);
+});
 
 Route::get('/create-account',function(){
 
