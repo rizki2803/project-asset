@@ -95,9 +95,44 @@
                                                     </a>
                                                 </td>
                                             <td>
-
+                                                {{$service->p_reg}}
                                             </td>
-
+                                            <td>
+                                                {{strtoupper($service->p_nmusr)}}
+                                            </td>
+                                            <td>
+                                                {{strtoupper($service->p_dprt)}}
+                                            </td>
+                                            <td>
+                                                @if($service->s_pick == 0)
+                                                    KARYAWAN
+                                                @elseif($service->s_pick == 1)
+                                                    VENDOR
+                                                @else
+                                                    DEPARTEMEN IT
+                                                @endif
+                                            </td>
+                                            <td>
+                                                @if($service->s_stat == 0)
+                                                    ON PROCESS
+                                                @else
+                                                    FINISH
+                                                @endif
+                                            </td>
+                                            <td>
+                                                {{$service->s_vndr}}
+                                            </td>
+                                            <td>
+                                            <?php
+                                                $awal  = date_create();
+                                                $akhir = date_create($service->s_estmd); // waktu sekarang, pukul 06:13
+                                                $diff  = date_diff( $akhir, $awal );
+                                                echo $service->s_estmd. ' Waktu tinggal: ' . $diff->h .  ' jam, ' . $diff->m . ' menit';
+                                            ?>
+                                            </td>
+                                            <td>
+                                                {{strtoupper($service->p_desk)}}
+                                            </td>
                                         </tr>
                                     @endforeach
                                     </tbody>

@@ -4,7 +4,7 @@
     <div class="card">
         <div class="body">
             <form id="sign_in" method="POST" action="{{ route('login') }}">
-                @csrf
+                {{ csrf_field() }}
                 <div class="msg">Masukkan E-mail dan Password</div>
                 <div class="input-group">
                         <span class="input-group-addon">

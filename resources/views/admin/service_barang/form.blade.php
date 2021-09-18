@@ -59,7 +59,12 @@
             <div class="form-group">
             <label>Posisi Barang</label>
                 <div class="form-line">
-                    <input type="text" value="" class="form-control" name="pss" id="pss" required="required" placeholder="Masukkan Posisi Barang" />
+                    <select class="form-control show-tick" name="pss" id="pss" required="required">
+                        <option value="">-- Pilih Letak Posisi Barang --</option>
+                        <option value="0">Karyawan</option>
+                        <option value="1">Vendor</option>
+                        <option value="2">Departemen IT</option>
+                    </select>
                 </div>
             </div>
         </div>

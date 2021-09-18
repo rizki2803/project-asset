@@ -257,14 +257,15 @@ class MasterController extends Controller
         $store = [
             's_id' => Uuid::uuid4(),
             'p_id' => $bp->p_id,
+            's_stat' => '0',
             's_pick' => strtoupper($request->pss),
             's_vndr' => strtoupper($request->vndr),
-            's_estmd' => $request->has('estMax'),
+            's_estmd' => $request->estMax.' 23:59:59',
             's_cr_by' => strtoupper($nmLogin),
             's_cr_at' => now()
 
         ];
-dd($store);
+
         Service::select('*')->insert($store);
 
         return redirect()->back()->with('success', 'Update Successfully...');
