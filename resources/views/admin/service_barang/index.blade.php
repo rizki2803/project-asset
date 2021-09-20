@@ -3,7 +3,18 @@
 
     <section class="content">
         <div class="container-fluid" >
-
+            @if ($message = Session::get('success'))
+                <div class="alert alert-success alert-block">
+                    <button type="button" class="close" data-dismiss="alert">×</button>
+                    <strong>{{ $message }}</strong>
+                </div>
+            @endif
+            @if ($message = Session::get('warning'))
+                <div class="alert alert-warning alert-block">
+                    <button type="button" class="close" data-dismiss="alert">×</button>
+                    <strong>{{ $message }}</strong>
+                </div>
+            @endif
             <!-- Basic Examples -->
             <div class="row clearfix" >
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -86,11 +97,11 @@
                                     @foreach($srvc as $service)
                                         <tr>
                                                 <td>
-                                                    <a onclick="edit()" class="btn btn-warning btn-xs waves-effect" id="editmb" data-toggle="modal" data-target="#addservice">
+                                                    <a onclick="edit('{{$service->s_id}}')" class="btn btn-warning btn-xs waves-effect" id="editmb" data-toggle="modal" data-target="#addsrvc">
                                                         <i class="material-icons">edit</i>
                                                     </a>
 
-                                                    <a onclick="del()" class="btn btn-danger btn-xs waves-effect">
+                                                    <a onclick="del('{{$service->s_id}}')" class="btn btn-danger btn-xs waves-effect">
                                                         <i class="material-icons">delete</i>
                                                     </a>
                                                 </td>
@@ -123,12 +134,28 @@
                                                 {{$service->s_vndr}}
                                             </td>
                                             <td>
-                                            <?php
-                                                $awal  = date_create();
-                                                $akhir = date_create($service->s_estmd); // waktu sekarang, pukul 06:13
-                                                $diff  = date_diff( $akhir, $awal );
-                                                echo $service->s_estmd. ' Waktu tinggal: ' . $diff->h .  ' jam, ' . $diff->m . ' menit';
-                                            ?>
+                                                @if($service->s_estmd <= now())
+                                                    @if($service->s_stat == 0)
+                                                        <i onload="stat()">Waktu Habis</i>
+                                                    @else
+                                                        <i>Waktu Habis</i>
+                                                    @endif
+                                                @elseif(date('d-m-Y', strtotime($service->s_estmd)) == date('d-m-Y', strtotime(now())))
+                                                    @php
+                                                        $awal  = date_create();
+                                                        if(isset($service)){
+                                                            $akhir = date_create($service->s_estmd);
+                                                            }
+                                                        $diff  = date_diff( $akhir, $awal );
+                                                        echo 'Waktu tinggal : ' . $diff->h .  ' jam, ' . $diff->i . ' menit' ;
+                                                    @endphp
+                                                @else
+                                                    @php
+                                                        if(isset($service)){
+                                                            echo date('d-m-Y', strtotime($service->s_estmd));
+                                                            }
+                                                    @endphp
+                                                @endif
                                             </td>
                                             <td>
                                                 {{strtoupper($service->p_desk)}}
@@ -200,13 +227,55 @@
                     $("#reg").attr('disabled', false).val("");
                     $("#nmusr").attr('disabled', false).val("");
                     $("#dprt").attr('disabled', false).val("");
-                    $("#ket").val("");
+                    $("#ket").attr('disabled', false).val("");
                     $("#vndr").val("");
                     $("#pss").val("");
                     $("#estMax").val("");
                     $("#form-srvc").attr("action", url);
                 }
 
+                function edit(id) {
+                    var urlGet = "{{route('edit_srvc','iniuuidservice')}}";
+                    urlGet = urlGet.replace('iniuuidservice',id);
+
+                    var urlPost = "{{route('upd_srvc','iniuuidservice')}}";
+                    urlPost = urlPost.replace('iniuuidservice',id);
+
+                    $.get(urlGet, function(data){
+                        $("#reg").attr('disabled', true).val(data.srvc.p_reg);
+                        $("#nmusr").attr('disabled', true).val(data.srvc.p_nmusr);
+                        $("#dprt").attr('disabled', true).val(data.srvc.p_dprt);
+                        $("#ket").attr('disabled', true).val(data.srvc.p_desk);
+                        $("#vndr").val(data.srvc.s_vndr);
+                        $("#pick").val(data.srvc.s_pick);
+                        $('#estMax').val(moment(data.srvc.s_estmd).format('MM/DD/YYYY'));
+                    });
+
+                    $("#form-srvc").attr("action", urlPost);
+
+                }
+
+                function del(id) {
+                    var url = "{{route('del_srvc','iniuuidservice')}}";
+                    url = url.replace('iniuuidservice',id);
+
+                    swal({
+                        title: "Apakah Anda Akan Menghapus Data Ini?",
+                        text: "Data Yang Dihapus Tidak Akan Bisa Kembali!",
+                        type: "warning",
+                        showCancelButton: true,
+                        confirmButtonColor: "#DD6B55",
+                        confirmButtonText: "Yes",
+                        closeOnConfirm: false
+                    }, function () {
+                        swal("Deleted!", "Data Berhasil di Hapus.", "success");
+                        window.location.href = url;
+                    });
+                }
+
+                function stat(){
+
+                }
             </script>
 
         </div>

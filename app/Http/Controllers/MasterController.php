@@ -225,16 +225,26 @@ class MasterController extends Controller
 //END------------------------------SATUAN BARANG----------------------------------------------
 //------------------------------SERVICE BARANG----------------------------------------------
 
-    public function srvc_bar()
+    public function srvc_bar(Request $request)
     {
-        $data ['srvc']= Service::select('*')
-            ->join('bar_p', 'bar_p.p_id','=', 'srvc.p_id')
-            ->get();
+        if(($request->has('min')) && ($request->has('max'))) {
+            $data ['srvc']= Service::select('*')
+                ->join('bar_p', 'bar_p.p_id','=', 'srvc.p_id')
+                ->wherebetween('s_estmd',[$request->min.' 00:00:00', $request->max.' 23:59:59'])
+                ->get();
+            //dd($request->min, $request->max);
+        }
+        else {
+            //dd($request->date_filter);
+            $data ['srvc']= Service::select('*')
+                ->join('bar_p', 'bar_p.p_id','=', 'srvc.p_id')
+                ->get();
+        }
 
         $data ['bp'] = Pengajuan::select('*')
             ->where('p_kat', '1')
             ->pluck('p_reg', 'p_reg');
-        //dd($data);
+//        dd($data);
 
         return view('admin.service_barang.index',$data);
     }
@@ -258,19 +268,62 @@ class MasterController extends Controller
             's_id' => Uuid::uuid4(),
             'p_id' => $bp->p_id,
             's_stat' => '0',
-            's_pick' => strtoupper($request->pss),
+            's_pick' => strtoupper($request->pick),
             's_vndr' => strtoupper($request->vndr),
-            's_estmd' => $request->estMax.' 23:59:59',
+            's_estmd' => $request->estMax.' '.Carbon::now()->format('H:i:s'),
             's_cr_by' => strtoupper($nmLogin),
-            's_cr_at' => now()
+            's_cr_at' => Carbon::now()
 
         ];
 
+        $ketUpd = [
+            'p_desk' => strtoupper($request->ket),
+            'p_up_by' => strtoupper($nmLogin),
+            'p_up_at' => Carbon::now()
+        ];
+
         Service::select('*')->insert($store);
+
+        Pengajuan::select('*')->where('p_id', $bp->p_id)->update($ketUpd);
 
         return redirect()->back()->with('success', 'Update Successfully...');
 
     }
 
+    public function edit_srvc($id)
+    {
+        $dataEdit ['srvc']= Service::select('*')
+            ->join('bar_p', 'bar_p.p_id','=', 'srvc.p_id')
+            ->where('s_id', $id)->first();
+
+        return $dataEdit;
+    }
+
+    public function upd_srvc(Request $request, $id)
+    {
+
+        $nmLogin = Auth::user()->name;
+
+        $store = [
+            's_pick' => strtoupper($request->pick),
+            's_vndr' => strtoupper($request->vndr),
+            's_estmd' => $request->estMax.' '.Carbon::now()->format('H:i:s'),
+            's_up_by' => strtoupper($nmLogin),
+            's_up_at' => Carbon::now()
+
+        ];
+
+        Service::select('*')->where('s_id', $id)->update($store);
+
+        return redirect()->back()->with('warning','Update Successfully!!!');
+
+    }
+
+    public function del_srvc($id)
+    {
+        Service::select('*')->where('s_id', $id)->delete();
+
+        return redirect()->back();
+    }
 //END------------------------------SERVICE BARANG----------------------------------------------
 }

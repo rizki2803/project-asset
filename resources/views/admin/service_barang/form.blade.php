@@ -59,7 +59,7 @@
             <div class="form-group">
             <label>Posisi Barang</label>
                 <div class="form-line">
-                    <select class="form-control show-tick" name="pss" id="pss" required="required">
+                    <select class="form-control show-tick" name="pick" id="pick" required="required">
                         <option value="">-- Pilih Letak Posisi Barang --</option>
                         <option value="0">Karyawan</option>
                         <option value="1">Vendor</option>

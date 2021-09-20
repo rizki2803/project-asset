@@ -73,6 +73,9 @@ Route::middleware([\App\Http\Middleware\Login_cek::class])->group(function () {
     Route::get('/srvc_bar', [App\Http\Controllers\MasterController::class, 'srvc_bar'])->name('srvc_bar');
         Route::get('/srvc_bar/isi/{p_reg}', [App\Http\Controllers\MasterController::class, 'isi_srvc'])->name('isi_srvc');
         Route::post('/srvc_bar/store', [App\Http\Controllers\MasterController::class, 'store_srvc'])->name('store_srvc');
+        Route::get('/srvc_bar/edit/{s_id}', [App\Http\Controllers\MasterController::class, 'edit_srvc'])->name('edit_srvc');
+        Route::post('/srvc_bar/upd/{s_id}', [App\Http\Controllers\MasterController::class, 'upd_srvc'])->name('upd_srvc');
+        Route::get('/srvc_bar/del/{s_id}', [App\Http\Controllers\MasterController::class, 'del_srvc'])->name('del_srvc');
 
     Route::get('/in_bar', [App\Http\Controllers\InputController::class, 'index'])->name('in_bar');
         Route::post('/in_bar/store', [App\Http\Controllers\InputController::class, 'store_in'])->name('store_in');
