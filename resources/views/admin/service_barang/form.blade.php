@@ -82,7 +82,7 @@
         </div>
     </div>
     <div class="modal-footer">
-        <button type="submit" class="btn btn-link waves-effect" name="submitbtn">SAVE CHANGES</button>
+        <button type="submit" class="btn btn-link waves-effect" id="submitbtn" name="submitbtn">SAVE CHANGES</button>
         <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
     </div>
 </form>

@@ -97,13 +97,19 @@
                                     @foreach($srvc as $service)
                                         <tr>
                                                 <td>
-                                                    <a onclick="edit('{{$service->s_id}}')" class="btn btn-warning btn-xs waves-effect" id="editmb" data-toggle="modal" data-target="#addsrvc">
+                                                    @if($service->s_stat == 0)
+                                                    <a onclick="edit('{{$service->s_id}}')" class="btn btn-warning btn-xs waves-effect" id="editsb" data-toggle="modal" data-target="#addsrvc">
                                                         <i class="material-icons">edit</i>
                                                     </a>
 
                                                     <a onclick="del('{{$service->s_id}}')" class="btn btn-danger btn-xs waves-effect">
                                                         <i class="material-icons">delete</i>
                                                     </a>
+                                                    @else
+                                                        <a onclick="show('{{$service->s_id}}')" class="btn btn-default btn-xs waves-effect" id="showsb" data-toggle="modal" data-target="#addsrvc">
+                                                            <i class="material-icons">remove_red_eye</i>
+                                                        </a>
+                                                    @endif
                                                 </td>
                                             <td>
                                                 {{$service->p_reg}}
@@ -125,9 +131,9 @@
                                             </td>
                                             <td>
                                                 @if($service->s_stat == 0)
-                                                    ON PROCESS
+                                                    On Process
                                                 @else
-                                                    FINISH
+                                                    Finish
                                                 @endif
                                             </td>
                                             <td>
@@ -136,9 +142,9 @@
                                             <td>
                                                 @if($service->s_estmd <= now())
                                                     @if($service->s_stat == 0)
-                                                        <i onload="stat()">Waktu Habis</i>
+                                                        <a onclick="stat('{{$service->s_id}}')" class="btn btn-warning btn-xs waves-effect">Expired</a>
                                                     @else
-                                                        <i>Waktu Habis</i>
+                                                        Expired
                                                     @endif
                                                 @elseif(date('d-m-Y', strtotime($service->s_estmd)) == date('d-m-Y', strtotime(now())))
                                                     @php
@@ -228,9 +234,10 @@
                     $("#nmusr").attr('disabled', false).val("");
                     $("#dprt").attr('disabled', false).val("");
                     $("#ket").attr('disabled', false).val("");
-                    $("#vndr").val("");
-                    $("#pss").val("");
-                    $("#estMax").val("");
+                    $("#vndr").attr('disabled', false).val("");
+                    $("#pss").attr('disabled', false).val("");
+                    $("#estMax").attr('disabled', false).val("");
+                    $("#submitbtn").show();
                     $("#form-srvc").attr("action", url);
                 }
 
@@ -246,9 +253,10 @@
                         $("#nmusr").attr('disabled', true).val(data.srvc.p_nmusr);
                         $("#dprt").attr('disabled', true).val(data.srvc.p_dprt);
                         $("#ket").attr('disabled', true).val(data.srvc.p_desk);
-                        $("#vndr").val(data.srvc.s_vndr);
-                        $("#pick").val(data.srvc.s_pick);
-                        $('#estMax').val(moment(data.srvc.s_estmd).format('MM/DD/YYYY'));
+                        $("#vndr").attr('disabled', false).val(data.srvc.s_vndr);
+                        $("#pick").attr('disabled', false).val(data.srvc.s_pick);
+                        $('#estMax').attr('disabled', false).val(moment(data.srvc.s_estmd).format('MM/DD/YYYY'));
+                        $("#submitbtn").show();
                     });
 
                     $("#form-srvc").attr("action", urlPost);
@@ -273,7 +281,30 @@
                     });
                 }
 
-                function stat(){
+                function stat(id){
+
+                    var urlPost = "{{route('stat_srvc','iniuuidservice')}}";
+                    urlPost = urlPost.replace('iniuuidservice',id);
+
+                    $(this).click(function () {
+                        window.location.href = urlPost;
+                    });
+                }
+
+                function show(id) {
+                    var urlGet = "{{route('edit_srvc','iniuuidservice')}}";
+                    urlGet = urlGet.replace('iniuuidservice',id);
+
+                    $.get(urlGet, function(data){
+                        $("#reg").attr('disabled', true).val(data.srvc.p_reg);
+                        $("#nmusr").attr('disabled', true).val(data.srvc.p_nmusr);
+                        $("#dprt").attr('disabled', true).val(data.srvc.p_dprt);
+                        $("#ket").attr('disabled', true).val(data.srvc.p_desk);
+                        $("#vndr").attr('disabled', true).val(data.srvc.s_vndr);
+                        $("#pick").attr('disabled', true).val(data.srvc.s_pick);
+                        $('#estMax').attr('disabled', true).val(moment(data.srvc.s_estmd).format('MM/DD/YYYY'));
+                        $("#submitbtn").hide();
+                    });
 
                 }
             </script>

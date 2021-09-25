@@ -325,5 +325,18 @@ class MasterController extends Controller
 
         return redirect()->back();
     }
+
+    public function stat_srvc($id)
+    {
+
+        $store = [
+            's_stat' => '1'
+        ];
+
+        Service::select('*')->where('s_id', $id)->update($store);
+
+        return redirect()->back();
+
+    }
 //END------------------------------SERVICE BARANG----------------------------------------------
 }
