@@ -28,9 +28,9 @@ Route::get('/create-account',function(){
     DB::table('users')->insert($data);
 });
 
-Route::middleware([\App\Http\Middleware\Login_cek::class])->group(function () {
+// Route::middleware([\App\Http\Middleware\Login_cek::class])->group(function () {
 
-    Route::get('/dashboard', [App\Http\Controllers\MasterController::class, 'index'])->name('dashboard')->middleware('Login_cek');;
+    Route::get('/dashboard', [App\Http\Controllers\MasterController::class, 'index'])->name('dashboard')/*->middleware('Login_cek');*/;
 
     Route::get('logout', [App\Http\Controllers\Auth\LoginController::class, 'logout']);
 
@@ -69,7 +69,7 @@ Route::middleware([\App\Http\Middleware\Login_cek::class])->group(function () {
         Route::post('/out_bar/upd/{out_id}', [App\Http\Controllers\OutputController::class, 'upd_out'])->name('upd_out');
         Route::get('/out_bar/del/{out_id}', [App\Http\Controllers\OutputController::class, 'del_out'])->name('del_out');
         Route::get('/out_bar/isi/{p_reg}', [App\Http\Controllers\OutputController::class, 'isi_out'])->name('isi_out');
-});
+// });
 
 Route::get('/list_p', [App\Http\Controllers\PengajuanController::class, 'list_p'])->name('list_p');
 
@@ -80,7 +80,9 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/detail-kode-regis', [App\Http\Controllers\PengajuanController::class, 'detailKodeRegistrasi'])->name('user.detailKodeRegistrasi');
+
+Route::get('/home', [App\Http\Controllers\pengajuanController::class, 'index'])->name('home');
+Route::get('/detail-kode-regis/{kodeRegis}', [App\Http\Controllers\PengajuanController::class, 'detailKodeRegistrasi'])->name('user.detailKodeRegistrasi');
 Route::get('tesnotif', [App\Http\Controllers\PengajuanController::class, 'notiftes']);
 Route::get('getDataPegawai/{nik}', [App\Http\Controllers\PengajuanController::class, 'getDataPegawai'])->name('user.getDataPegawai');
 Route::get('/pengajuanBarang/{kode_reg}/{p_token}', [App\Http\Controllers\PengajuanController::class, 'approve'])->name('user.pengajuanBarang.atasan.approve');

@@ -14,6 +14,7 @@ use App\Notifications\TesNotif;
 use App\Notifications\user\AtasanNotification;
 use App\Notifications\user\AtasanSeq1Notification;
 use App\Notifications\user\AtasanSeq2Notification;
+use App\Notifications\AdminNotification;
 use App\Notifications\user\UserNotification;
 use App\Models\test_api;
 use Illuminate\Support\Str;
@@ -24,7 +25,8 @@ class PengajuanController extends Controller
     {
         $data['mb']= pengajuan::select('*')
             ->rightjoin('aprv', 'aprv.p_id','=', 'bar_p.p_id')
-          // ->groupBy($data.'p_id')
+//            ->distinct('aprv.a_seq')
+
             ->get();
 
         $status = [];
@@ -143,19 +145,19 @@ class PengajuanController extends Controller
             return back();
         }
 
-        public function detailKodeRegistrasi(Request $request)
+        public function detailKodeRegistrasi(Request $request, $kodeRegis)
         {
-
             try {
 //               $data['mb']= pengajuan::select('*')
 //                  // ->join('master_bar', 'master_bar.mb_id','=', 'bar_p.mb_id')
 //                   ->where('bar_p.p_reg', '=', $request->kode_regis)
 //                   ->get();
-                $data = Approve::join('bar_p', 'bar_p.p_id', '=', 'aprv.p_id')
-                                ->where('bar_p.p_reg', $request->kode_regis)
-                                ->orderBy('a_seq', 'ASC')
-                                ->get();
-
+                $data = Approve::rightjoin('bar_p', 'bar_p.p_id', '=', 'aprv.p_id')
+                                ->rightjoin('in_bar', 'in_bar.p_id', '=', 'aprv.p_id')
+//                                ->leftjoin('srvc_bar', 'srvc_bar.p_id', '=', 'aprv.p_id')
+                                ->where('bar_p.p_reg', $kodeRegis)
+                                ->orderBy('a_seq', 'DESC')
+                                ->first();
                 $status = [];
                 $status[0] = "Proccess";
                 $status[1] = "Approve";
@@ -164,15 +166,19 @@ class PengajuanController extends Controller
                 $status[4] = "Hold";
                 $status[5] = "Cancel";
 
-                if ($data->count() > 0){
-
-                    return view('user.detail_kode_reg', [
+                if (!empty($data)){
+                    return [
                         'data' => $data,
                         'status' => $status,
-                        'p_reg' => $request->kode_regis
-                    ]);
+                        'p_reg' => $kodeRegis
+                    ];
+//                    return view('user.detail_kode_reg', [
+//                        'data' => $data,
+//                        'status' => $status,
+//                        'p_reg' => $request->kode_regis
+//                    ]);
                 }else{
-                    return abort('404');
+                    return ['data' => 0];
                 }
                 }catch(\Exception $e){
                     return abort('404');
@@ -214,6 +220,7 @@ class PengajuanController extends Controller
                 'a_stat' => 1,
                 'a_cur_p' => true,
                 'a_up_by' => $data->p_atsn,
+                'a_nik' => $data->nik,
                 'a_up_at' => Carbon::now()->setTimezone('asia/jakarta')
             ];
             try {
@@ -237,7 +244,7 @@ class PengajuanController extends Controller
 
                 // send Email ke pa teguh
                 $sendEmailAtasan = Notification::route('mail', $emailAtasan1)->notify(new AtasanSeq1Notification($data));
-                return redirect('/');
+                return view ('user.viewapprove');
 
             }catch (\Exception $e){
                 return 'error <br>'.$e->getMessage();
@@ -265,6 +272,7 @@ class PengajuanController extends Controller
             'a_seq' => 0,
             'a_stat' => 1,
             'a_cur_p' => false,
+            'a_nik' => $data->nik,
 //            'a_up_by' => 'Teguh',
             'a_up_at' => Carbon::now()->setTimezone('asia/jakarta')
         ];
@@ -274,6 +282,7 @@ class PengajuanController extends Controller
             'a_seq' => 1,
             'a_stat' => 1,
             'a_cur_p' => true,
+            'a_nik' => $data->nik,
             'a_up_by' => 'Teguh',
             'a_up_at' => Carbon::now()->setTimezone('asia/jakarta')
         ];
@@ -308,7 +317,7 @@ class PengajuanController extends Controller
             // send Email ke pa Fadly
             $sendEmailAtasan = Notification::route('mail', $emailAtasan2)->notify(new AtasanSeq2Notification($data));
 
-            return redirect('/');
+            return view ('user.viewapprove');
 
         }catch (\Exception $e){
             return 'error <br>'.$e->getMessage();
@@ -362,8 +371,11 @@ class PengajuanController extends Controller
 
             // send Email ke pa Fadly
             $sendEmailAtasan = Notification::route('mail', $emailAtasan2)->notify(new AtasanSeq2Notification($data));
+            $emailadmin = "rizkioi.rm@gmail.com";
 
-                return redirect('/');
+            // send Email ke admin
+            $sendEmailadmin = Notification::route('mail', $emailadmin)->notify(new AdminNotification($data));
+                return view ('user.viewapprove');
 
         }catch (\Exception $e){
             return 'error <br>'.$e->getMessage();
@@ -390,9 +402,10 @@ class PengajuanController extends Controller
         ]);
 
         if($update){
-            return "berhasil";
+            return view ('user.viewnoapprove');
         }else{
             return "gagal";
         }
     }
+
 }

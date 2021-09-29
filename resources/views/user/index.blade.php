@@ -87,19 +87,22 @@
 
                     <!-- aset -->
                     <div role="tabpanel" class="tab-pane fade" id="profile">
-                        <form class="tab-content" action="{{route('user.detailKodeRegistrasi')}}">
+                        <form class="tab-content">
                             <label>Silahkan Masukan Kode Registasi</label>
                             <div class="form-group">
                                 <div class="form-line">
-                                    <input type="text" name="kode_regis" class="form-control" placeholder="Kode Regist">
+                                    <input type="text" name="kode_regis" id="kodeRegist" class="form-control" placeholder="Kode Regist" required>
                                 </div>
                             </div>
-                            <button class="btn btn-primary waves-effect" type="submit">SUBMIT</button>
+                            <!-- Button trigger modal -->
+                            <button type="button" id="btn-submitcheckpengajuan" class="btn btn-primary btn-lg">
+                                SUBMIT
+                            </button>
+                            {{--<button class="btn btn-primary waves-effect" type="submit">SUBMIT</button>--}}
                         </form>
                         <br>
                         <br>
 
-                        <label>Detail</label>
                     </div>
                 </div>
 
@@ -108,6 +111,45 @@
     </div>
 </div>
 
+ <!-- Modal -->
+ <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+     <div class="modal-dialog" role="document">
+         <div class="modal-content">
+             <div class="modal-header">
+                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                 <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+             </div>
+             <div class="modal-body">
+                 <div id="dataByKode">
+                     <div>
+                         <span><b>NIK Peminjam :</b></span> <span id="val_nikPeminjam"></span>
+                     </div>
+                     <div>
+                         <span><b>Nama Peminjam :</b></span> <span id="val_namaPeminjam"></span>
+                     </div>
+                     <div>
+                         <span><b>Nama Departemen :</b></span> <span id="val_namaDepartemen"></span>
+                     </div>
+                     <div>
+                         <span><b>No asset :</b></span> <span id="val_noAsset"></span>
+                     </div>
+                     <div>
+                         <span><b>keterangan :</b></span> <span id="val_keterangan"></span>
+                     </div>
+                     <div>
+                         <span><b>Penerima Kedatangan barang :</b></span> <span id="val_penerimaKedatanganBarang"></span>
+                     </div>
+                     <div>
+                         <span><b>Status Approval :</b></span> <span id="val_statusApprove"></span>
+                     </div>
+                 </div>
+             </div>
+             <div class="modal-footer">
+                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+             </div>
+         </div>
+     </div>
+ </div>
 
  <!-- Jquery Core Js -->
  <script src="{{asset('assets')}}/plugins/jquery/jquery.min.js"></script>
@@ -147,7 +189,48 @@
 
  <script>
      $(function() {
-         $('#nik').on('input', function(event){
+
+         $('#btn-submitcheckpengajuan').click(function(event) {
+             event.preventDefault();
+
+             var kodeRegist = $('#kodeRegist').val();
+
+             var url =  "{{url('detail-kode-regis')}}/:kodeRegist";
+             url = url.replace(':kodeRegist', kodeRegist);
+
+             if (kodeRegist != ""){
+                 $('#myModal').modal('show');
+                 $.ajax({
+                     url: url,
+                     type: 'GET',
+                     success: function(res) {
+                         if (res.data == 0){
+                             $('#myModalLabel').text("Data tidak ada !");
+                             $( ".modal-header" ).addClass( "bg-danger");
+                             $( ".modal-header" ).addClass( "text-dark");
+                             $('#dataByKode').hide();
+                         }else{
+                             $( ".modal-header" ).removeClass("bg-danger");
+                             $( ".modal-header" ).addClass( "bg-primary" );
+                             $('#dataByKode').show();
+                             $('#myModalLabel').text(kodeRegist);
+                             $('#val_nikPeminjam').text(res.data.a_nik);
+                             $('#val_namaPeminjam').text(res.data.a_nm);
+                             $('#val_namaDepartemen').text(res.data.p_dprt);
+                             $('#val_noAsset').text(res.data.p_asst==null?'-':res.data.p_asst);
+                             $('#val_keterangan').text(res.data.in_ket);
+                             $('#val_penerimaKedatanganBarang').text(res.data.in_pjwb);
+                             $('#val_statusApprove').text(res.data.a_nm!="Fadli"?res.status[res.data.a_stat]+' '+res.data.a_nm:"Sudah di Acc");
+                         }
+                     }
+                 });
+             }else{
+                 alert('Harap Diisi !');
+             }
+
+         });
+
+             $('#nik').on('input', function(event){
              event.preventDefault();
 
              var url =  "{{route('user.getDataPegawai', ':nik')}}";

@@ -5,6 +5,7 @@
         <div class="card">
             <div class="body">
                 <form id="sign_in" method="POST">
+                    @csrf
                     <div class="msg">Sign in to start your session</div>
                     <div class="input-group">
                                 <span class="input-group-addon">
