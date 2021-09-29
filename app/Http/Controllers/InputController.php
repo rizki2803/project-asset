@@ -83,7 +83,7 @@ class InputController extends Controller
             'p_id' => $bp->p_id,
             's_id' => $srvc,
             'in_cr_by' => strtoupper($request->pjwb),
-            'in_cr_at' => now()
+            'in_cr_at' => now()->addMinute()
 
         ];
 
@@ -91,7 +91,7 @@ class InputController extends Controller
 
         Master::select('*')->where('mb_id', $mb->mb_id)->update($storeStok);
 
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Update Successfully...');
 
     }
 
@@ -145,7 +145,7 @@ class InputController extends Controller
 
         Input::select('*')->where('in_id', $id)->update($store);
 
-        return redirect()->back();
+        return redirect()->back()->with('warning','Update Successfully!!!');
 
     }
 

@@ -8,6 +8,7 @@
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link rel="shortcut icon" href="{{asset('img')}}/HariffLogo.png" />
     <title>PT.Hariff DTE</title>
     <!-- Favicon-->
     <link rel="icon" href="{{asset('assets')}}/favicon.ico" type="image/x-icon">
@@ -85,6 +86,7 @@
 <!-- Custom Js -->
 <script src="{{asset('assets')}}/js/admin.js"></script>
 <script src="{{asset('assets')}} /js/pages/examples/sign-in.js"></script>
+>>>>>>> origin/main
 </body>
 
 </html>

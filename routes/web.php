@@ -13,6 +13,22 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/create-user',function() {
+
+
+    $data[] = [
+        'nik' => ('123'),
+        'name' => ('farhan'),
+        'departemen' => ('IT'),
+        'email' => ('farhan@gmail.com'),
+        'email_verified_at' => now(),
+        'password' => bcrypt('farhan'),
+        'remember_token' => Str::random(10),
+    ];
+
+    DB::table('users')->insert($data);
+});
+
 Route::get('/create-account',function(){
 
         $data[] = [
@@ -28,7 +44,8 @@ Route::get('/create-account',function(){
     DB::table('users')->insert($data);
 });
 
-// Route::middleware([\App\Http\Middleware\Login_cek::class])->group(function () {
+
+Route::middleware([\App\Http\Middleware\Login_cek::class])->group(function () {
 
     Route::get('/dashboard', [App\Http\Controllers\MasterController::class, 'index'])->name('dashboard')/*->middleware('Login_cek');*/;
 
@@ -54,6 +71,12 @@ Route::get('/create-account',function(){
         Route::get('/mstr_bar/sat_bar/del/{sb_id}', [App\Http\Controllers\MasterController::class, 'del_sb'])->name('del_sb');
 
     Route::get('/srvc_bar', [App\Http\Controllers\MasterController::class, 'srvc_bar'])->name('srvc_bar');
+        Route::get('/srvc_bar/isi/{p_reg}', [App\Http\Controllers\MasterController::class, 'isi_srvc'])->name('isi_srvc');
+        Route::post('/srvc_bar/store', [App\Http\Controllers\MasterController::class, 'store_srvc'])->name('store_srvc');
+        Route::get('/srvc_bar/edit/{s_id}', [App\Http\Controllers\MasterController::class, 'edit_srvc'])->name('edit_srvc');
+        Route::post('/srvc_bar/upd/{s_id}', [App\Http\Controllers\MasterController::class, 'upd_srvc'])->name('upd_srvc');
+        Route::get('/srvc_bar/del/{s_id}', [App\Http\Controllers\MasterController::class, 'del_srvc'])->name('del_srvc');
+        Route::get('/srvc_bar/stat/{s_id}', [App\Http\Controllers\MasterController::class, 'stat_srvc'])->name('stat_srvc');
 
     Route::get('/in_bar', [App\Http\Controllers\InputController::class, 'index'])->name('in_bar');
         Route::post('/in_bar/store', [App\Http\Controllers\InputController::class, 'store_in'])->name('store_in');
@@ -80,19 +103,18 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-
-Route::get('/home', [App\Http\Controllers\pengajuanController::class, 'index'])->name('home');
-Route::get('/detail-kode-regis/{kodeRegis}', [App\Http\Controllers\PengajuanController::class, 'detailKodeRegistrasi'])->name('user.detailKodeRegistrasi');
-Route::get('tesnotif', [App\Http\Controllers\PengajuanController::class, 'notiftes']);
-Route::get('getDataPegawai/{nik}', [App\Http\Controllers\PengajuanController::class, 'getDataPegawai'])->name('user.getDataPegawai');
-Route::get('/pengajuanBarang/{kode_reg}/{p_token}', [App\Http\Controllers\PengajuanController::class, 'approve'])->name('user.pengajuanBarang.atasan.approve');
-Route::get('/pengajuanBarang/{kode_reg}/1/{p_token}', [App\Http\Controllers\PengajuanController::class, 'approveseq1'])->name('user.pengajuanBarang.atasan.seq1.approve');
-Route::get('/pengajuanBarang/{kode_reg}/2/{p_token}', [App\Http\Controllers\PengajuanController::class, 'approveseq2'])->name('user.pengajuanBarang.atasan.seq2.approve');
-Route::get('/pengajuanBarang/reject/{kode_reg}/{p_token}', [App\Http\Controllers\PengajuanController::class, 'reject'])->name('user.pengajuanBarang.atasan.reject');
-Route::post('/pengajuanBarang/store/reject/{kode_reg}/{p_token}', [App\Http\Controllers\PengajuanController::class, 'StoreReject'])->name('user.pengajuanBarang.atasan.storeReject');
-Route::get('get-data/{p_reg}', function ($p_reg){
-   $data = App\Models\Approve::join('bar_p', 'bar_p.p_id', '=', 'aprv.p_id')->where('bar_p.p_reg', $p_reg)
-       ->orderBy('a_seq', 'ASC')
-       ->get();
-   return view('data-tabel', ['data' => $data]);
+    Route::get('/detail-kode-regis', [App\Http\Controllers\PengajuanController::class, 'detailKodeRegistrasi'])->name('user.detailKodeRegistrasi');
+    Route::get('tesnotif', [App\Http\Controllers\PengajuanController::class, 'notiftes']);
+    Route::get('getDataPegawai/{nik}', [App\Http\Controllers\PengajuanController::class, 'getDataPegawai'])->name('user.getDataPegawai');
+    Route::get('/pengajuanBarang/{kode_reg}/{p_token}', [App\Http\Controllers\PengajuanController::class, 'approve'])->name('user.pengajuanBarang.atasan.approve');
+    Route::get('/pengajuanBarang/{kode_reg}/1/{p_token}', [App\Http\Controllers\PengajuanController::class, 'approveseq1'])->name('user.pengajuanBarang.atasan.seq1.approve');
+    Route::get('/pengajuanBarang/{kode_reg}/2/{p_token}', [App\Http\Controllers\PengajuanController::class, 'approveseq2'])->name('user.pengajuanBarang.atasan.seq2.approve');
+    Route::get('/pengajuanBarang/reject/{kode_reg}/{p_token}', [App\Http\Controllers\PengajuanController::class, 'reject'])->name('user.pengajuanBarang.atasan.reject');
+    Route::post('/pengajuanBarang/store/reject/{kode_reg}/{p_token}', [App\Http\Controllers\PengajuanController::class, 'StoreReject'])->name('user.pengajuanBarang.atasan.storeReject');
+    Route::get('get-data/{p_reg}', function ($p_reg){
+        $data = App\Models\Approve::join('bar_p', 'bar_p.p_id', '=', 'aprv.p_id')->where('bar_p.p_reg', $p_reg)
+            ->orderBy('a_seq', 'ASC')
+            ->get();
+        return view('data-tabel', ['data' => $data]);
+    });
 });

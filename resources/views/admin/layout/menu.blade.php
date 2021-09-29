@@ -83,10 +83,17 @@
 <!-- Waves Effect Plugin Js -->
 <script src="{{asset('assets')}}/plugins/node-waves/waves.js"></script>
 
+<!-- Bootstrap Notify Plugin Js -->
+<script src="{{asset('assets')}}/plugins/bootstrap-notify/bootstrap-notify.js"></script>
+
+<!-- SweetAlert Plugin Js -->
+<script src="{{asset('assets')}}/plugins/sweetalert/sweetalert.min.js"></script>
+
 <!-- Custom Js -->
 <script src="{{asset('assets')}}/js/admin.js"></script>
 <script src="{{asset('assets')}}/js/pages/examples/profile.js"></script>
 <script src="{{asset('assets')}}/js/pages/forms/basic-form-elements.js"></script>
+<script src="{{asset('assets')}}/js/pages/ui/dialogs.js"></script>
 
 <!-- Demo Js -->
 <script src="{{asset('assets')}}/js/demo.js"></script>
