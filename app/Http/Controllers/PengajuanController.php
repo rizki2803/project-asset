@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Approve;
 use App\Models\Master;
+use App\Models\Service;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Ramsey\Uuid\Uuid;
@@ -18,6 +19,7 @@ use App\Notifications\AdminNotification;
 use App\Notifications\user\UserNotification;
 use App\Models\test_api;
 use Illuminate\Support\Str;
+
 
 class PengajuanController extends Controller
 {
@@ -101,7 +103,7 @@ class PengajuanController extends Controller
             if ($storeData){
 
                 $emailAtasan = "rizkioi.rm@gmail.com";
-                $emailAtasan2 = "rizki@stmik-amikbandung.com";
+                
 
                 $data = [];
                 $data['p_atsn'] = $store['p_atsn'];
@@ -154,7 +156,7 @@ class PengajuanController extends Controller
 //                   ->get();
                 $data = Approve::rightjoin('bar_p', 'bar_p.p_id', '=', 'aprv.p_id')
                                 ->rightjoin('in_bar', 'in_bar.p_id', '=', 'aprv.p_id')
-//                                ->leftjoin('srvc_bar', 'srvc_bar.p_id', '=', 'aprv.p_id')
+                            //    ->rightjoin('srvc', 'srvc.p_id', '=', 'aprv.p_id')
                                 ->where('bar_p.p_reg', $kodeRegis)
                                 ->orderBy('a_seq', 'DESC')
                                 ->first();
@@ -167,6 +169,9 @@ class PengajuanController extends Controller
                 $status[5] = "Cancel";
 
                 if (!empty($data)){
+
+                    $data["letak"] = false;
+
                     return [
                         'data' => $data,
                         'status' => $status,
@@ -178,10 +183,45 @@ class PengajuanController extends Controller
 //                        'p_reg' => $request->kode_regis
 //                    ]);
                 }else{
+                    $service = Service::join('bar_p', 'bar_p.p_id','=', 'srvc.p_id')
+                                ->join('aprv', 'bar_p.p_id','=', 'aprv.p_id')
+                                ->where('bar_p.p_reg', "=",$kodeRegis)
+                                ->orderBy('aprv.a_cr_at', 'DESC')
+                                ->first();
+                    
+                    $service_a_nm = $service->a_nm;
+
+                    if (!empty($service)) {
+
+                        $bar_p = Pengajuan::where('p_reg', $kodeRegis)->first();
+
+                        $aprv = approve::where('p_id', $bar_p->p_id)->first();
+
+                        // dd($aprv);
+
+                        if ($service->s_pick == 0) {
+                            $letak = "Karyawan";
+                        }elseif($service->s_pick == 1){
+                            $letak = "Vendor";
+                        }else{
+                            $letak = "DEPARTEMEN IT";
+                        }
+
+                        $service['a_nik'] = $service->p_nik;
+                        $service['a_nm'] = $service->p_nmusr;
+                        $service['p_asst'] = $service->p_asst;
+                        $service['in_ket'] = $service->p_desk;
+                        $service['in_pjwb'] = $letak;
+                        $service["letak"] = true;
+                        $service['a_stat'] = ($aprv->a_stat == 2?"Pengajuan dibatalkan, karena ".$bar_p->p_alasan.".":($service->s_stat==false?"On Process " .ucwords($service_a_nm) :"Sudah di ACC "));
+                        // dd($service->s_stat);
+                        return ["data" => $service];
+                    }
                     return ['data' => 0];
                 }
                 }catch(\Exception $e){
-                    return abort('404');
+                    return $e->getMessage();
+                    return abort('500');
                 }
         }
 
@@ -240,10 +280,10 @@ class PengajuanController extends Controller
 
                 $getAprrove = Approve::where('p_id', '=', $data['p_id'])->first();
                 Approve::select('*')->insert($storeApprove2);
-                $emailAtasan1 = "rizki@stmik-amikbandung.ac.id";
+                
 
                 // send Email ke pa teguh
-                $sendEmailAtasan = Notification::route('mail', $emailAtasan1)->notify(new AtasanSeq1Notification($data));
+                $sendEmailAtasan = Notification::route('mail', env('EMAIL_ATASAN1'))->notify(new AtasanSeq1Notification($data));
                 return view ('user.viewapprove');
 
             }catch (\Exception $e){
@@ -312,10 +352,10 @@ class PengajuanController extends Controller
             $getAprrove = Approve::where('p_id', '=', $data['p_id'])->first();
             Approve::select('*')->insert($storeApprove3);
 
-            $emailAtasan2 = "rizkioi.rm1213@gmail.com";
+    
 
             // send Email ke pa Fadly
-            $sendEmailAtasan = Notification::route('mail', $emailAtasan2)->notify(new AtasanSeq2Notification($data));
+            $sendEmailAtasan = Notification::route('mail', env('EMAIL_ATASAN2'))->notify(new AtasanSeq2Notification($data));
 
             return view ('user.viewapprove');
 
@@ -367,18 +407,26 @@ class PengajuanController extends Controller
                 ['a_seq', '=', 2]
             ])->update($storeSeq2);
 
-            $emailAtasan2 = "rizkioi.rm1213@gmail.com";
+            
 
             // send Email ke pa Fadly
-            $sendEmailAtasan = Notification::route('mail', $emailAtasan2)->notify(new AtasanSeq2Notification($data));
+            $sendEmailAtasan = Notification::route('mail',env('EMAIL_ATASAN2'))->notify(new AtasanSeq2Notification($data));
             $emailadmin = "rizkioi.rm@gmail.com";
 
             // send Email ke admin
             $sendEmailadmin = Notification::route('mail', $emailadmin)->notify(new AdminNotification($data));
-                return view ('user.viewapprove');
+            
+            $pid = Pengajuan::where('p_reg', '=', $kode_reg)->first()->p_id;
+            
+            $srvc = Service::where('p_id', $pid);
+            if(!empty($srvc->first())){
+                $srvc->update([ 's_stat' => true ]);
+            }
 
+            return view ('user.viewapprove');
         }catch (\Exception $e){
-            return 'error <br>'.$e->getMessage();
+            return abort('500');
+            // return 'error <br>'.$e->getMessage();
         }
 
 
@@ -394,14 +442,20 @@ class PengajuanController extends Controller
         ]);
     }
     public function StoreReject(Request $request, $kode_reg, $p_token) {
-        $update = pengajuan::where([
+        $pengajuan = pengajuan::where([
             ['p_reg',$kode_reg],
             ['p_token',$p_token]
-        ])->update([
+        ]);
+
+        $update_pengajuan = $pengajuan->update([
             'p_alasan' => $request->alasan
         ]);
 
-        if($update){
+        $update_aprv = Approve::where('p_id', $pengajuan->first()->p_id)->update([
+            'a_stat' => 2
+        ]);
+
+        if($update_aprv){
             return view ('user.viewnoapprove');
         }else{
             return "gagal";

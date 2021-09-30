@@ -17,6 +17,7 @@ class Login_cek
      */
     public function handle(Request $request, Closure $next)
     {
+        
         if (!Auth::check()) {
             return redirect('login')->with('error',"kamu gak punya akses");
         }

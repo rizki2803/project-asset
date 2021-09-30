@@ -92,7 +92,7 @@ Route::middleware([\App\Http\Middleware\Login_cek::class])->group(function () {
         Route::post('/out_bar/upd/{out_id}', [App\Http\Controllers\OutputController::class, 'upd_out'])->name('upd_out');
         Route::get('/out_bar/del/{out_id}', [App\Http\Controllers\OutputController::class, 'del_out'])->name('del_out');
         Route::get('/out_bar/isi/{p_reg}', [App\Http\Controllers\OutputController::class, 'isi_out'])->name('isi_out');
-// });
+});
 
 Route::get('/list_p', [App\Http\Controllers\PengajuanController::class, 'list_p'])->name('list_p');
 
@@ -103,18 +103,24 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-    Route::get('/detail-kode-regis', [App\Http\Controllers\PengajuanController::class, 'detailKodeRegistrasi'])->name('user.detailKodeRegistrasi');
-    Route::get('tesnotif', [App\Http\Controllers\PengajuanController::class, 'notiftes']);
-    Route::get('getDataPegawai/{nik}', [App\Http\Controllers\PengajuanController::class, 'getDataPegawai'])->name('user.getDataPegawai');
-    Route::get('/pengajuanBarang/{kode_reg}/{p_token}', [App\Http\Controllers\PengajuanController::class, 'approve'])->name('user.pengajuanBarang.atasan.approve');
-    Route::get('/pengajuanBarang/{kode_reg}/1/{p_token}', [App\Http\Controllers\PengajuanController::class, 'approveseq1'])->name('user.pengajuanBarang.atasan.seq1.approve');
-    Route::get('/pengajuanBarang/{kode_reg}/2/{p_token}', [App\Http\Controllers\PengajuanController::class, 'approveseq2'])->name('user.pengajuanBarang.atasan.seq2.approve');
-    Route::get('/pengajuanBarang/reject/{kode_reg}/{p_token}', [App\Http\Controllers\PengajuanController::class, 'reject'])->name('user.pengajuanBarang.atasan.reject');
-    Route::post('/pengajuanBarang/store/reject/{kode_reg}/{p_token}', [App\Http\Controllers\PengajuanController::class, 'StoreReject'])->name('user.pengajuanBarang.atasan.storeReject');
-    Route::get('get-data/{p_reg}', function ($p_reg){
-        $data = App\Models\Approve::join('bar_p', 'bar_p.p_id', '=', 'aprv.p_id')->where('bar_p.p_reg', $p_reg)
-            ->orderBy('a_seq', 'ASC')
-            ->get();
-        return view('data-tabel', ['data' => $data]);
-    });
+
+Route::get('/home', [App\Http\Controllers\pengajuanController::class, 'index'])->name('home');
+Route::get('/detail-kode-regis/{kodeRegis}', [App\Http\Controllers\PengajuanController::class, 'detailKodeRegistrasi'])->name('user.detailKodeRegistrasi');
+Route::get('tesnotif', [App\Http\Controllers\PengajuanController::class, 'notiftes']);
+Route::get('getDataPegawai/{nik}', [App\Http\Controllers\PengajuanController::class, 'getDataPegawai'])->name('user.getDataPegawai');
+Route::get('/pengajuanBarang/{kode_reg}/{p_token}', [App\Http\Controllers\PengajuanController::class, 'approve'])->name('user.pengajuanBarang.atasan.approve');
+Route::get('/pengajuanBarang/{kode_reg}/1/{p_token}', [App\Http\Controllers\PengajuanController::class, 'approveseq1'])->name('user.pengajuanBarang.atasan.seq1.approve');
+Route::get('/pengajuanBarang/{kode_reg}/2/{p_token}', [App\Http\Controllers\PengajuanController::class, 'approveseq2'])->name('user.pengajuanBarang.atasan.seq2.approve');
+Route::get('/pengajuanBarang/reject/{kode_reg}/{p_token}', [App\Http\Controllers\PengajuanController::class, 'reject'])->name('user.pengajuanBarang.atasan.reject');
+Route::post('/pengajuanBarang/store/reject/{kode_reg}/{p_token}', [App\Http\Controllers\PengajuanController::class, 'StoreReject'])->name('user.pengajuanBarang.atasan.storeReject');
+Route::get('get-data/{p_reg}', function ($p_reg){
+   $data = App\Models\Approve::join('bar_p', 'bar_p.p_id', '=', 'aprv.p_id')->where('bar_p.p_reg', $p_reg)
+       ->orderBy('a_seq', 'ASC')
+       ->get();
+   return view('data-tabel', ['data' => $data]);
 });
+
+
+// Route::get('/cek-env', function(){
+//     return env('EMAIL_ATASAN1');
+// });

@@ -137,7 +137,7 @@
                          <span><b>keterangan :</b></span> <span id="val_keterangan"></span>
                      </div>
                      <div>
-                         <span><b>Penerima Kedatangan barang :</b></span> <span id="val_penerimaKedatanganBarang"></span>
+                     <b><span id="txt_penerimaan_atau_letak">Penerima Kedatangan barang :</span></b> <span id="val_penerimaKedatanganBarang"></span>
                      </div>
                      <div>
                          <span><b>Status Approval :</b></span> <span id="val_statusApprove"></span>
@@ -210,6 +210,7 @@
                              $( ".modal-header" ).addClass( "text-dark");
                              $('#dataByKode').hide();
                          }else{
+                             console.log(res)
                              $( ".modal-header" ).removeClass("bg-danger");
                              $( ".modal-header" ).addClass( "bg-primary" );
                              $('#dataByKode').show();
@@ -220,7 +221,12 @@
                              $('#val_noAsset').text(res.data.p_asst==null?'-':res.data.p_asst);
                              $('#val_keterangan').text(res.data.in_ket);
                              $('#val_penerimaKedatanganBarang').text(res.data.in_pjwb);
-                             $('#val_statusApprove').text(res.data.a_nm!="Fadli"?res.status[res.data.a_stat]+' '+res.data.a_nm:"Sudah di Acc");
+                             $('#txt_penerimaan_atau_letak').text(res.data.letak==true?"Letak Barang : ":"Penerima Kedatangan barang : ");
+                             if(res.data.letak == true){
+                                $('#val_statusApprove').text(res.data.a_stat);
+                             }else{
+                                $('#val_statusApprove').text(res.data.a_nm!="Fadli"?res.status[res.data.a_stat]+' '+res.data.a_nm:"Sudah di Acc"); 
+                             }
                          }
                      }
                  });
